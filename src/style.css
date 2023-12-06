@@ -1,0 +1,26 @@
+.round-cell{
+    margin: 16px;
+}
+.highlighted-row {
+    background-color:#6fbf73;
+}
+.secondary-highlighted-row{
+    height: "200px"
+}
+
+.draft-leader-board-header{
+    padding-bottom: 8px;
+}
+.team-score-tables-container{
+    padding-bottom: 8px;    
+}
+.divider{
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+#body{
+    margin: 8px;
+}
+.indented-row{
+    text-indent: 16px;
+}
