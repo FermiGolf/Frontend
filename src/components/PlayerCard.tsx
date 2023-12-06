@@ -72,10 +72,10 @@ export const PlayerCard = (props:PlayerCardProps)=>{
       <CardContent>
       <Stack direction="column" spacing={2}>
 
-       {props.round1.score && <RoundInfo roundNumber="1" score={props.round1.score}/>}
-       {props.round2.score &&<RoundInfo roundNumber="2" score={props.round2.score}/>}
-       {props.round3.score &&<RoundInfo roundNumber="3" score={props.round3.score}/>}
-       {props.round4.score &&<RoundInfo roundNumber="4" score={props.round4.score}/>}
+       {props.round1.isComplete && <RoundInfo roundNumber="1" score={props.round1.score}/>}
+       {props.round2.isComplete &&<RoundInfo roundNumber="2" score={props.round2.score}/>}
+       {props.round3.isComplete &&<RoundInfo roundNumber="3" score={props.round3.score}/>}
+       {props.round4.isComplete &&<RoundInfo roundNumber="4" score={props.round4.score}/>}
 
       </Stack>
         </CardContent>
