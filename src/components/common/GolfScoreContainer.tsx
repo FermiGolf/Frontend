@@ -6,35 +6,36 @@ interface GolfScoreProps {
   type: ScoreCatergory;
 }
 
+const padingNumber = '2px';
 const GolfScoreContainer: React.FC<GolfScoreProps> = ({ value, type }) => {
   const getBorderStyle = () => {
     switch (type) {
       case 'par':
-        return { width: '20px', height: '20px', boxSizing: 'border-box' as 'border-box'};
+        return { width: '20px', height: '20px', boxSizing: 'border-box' as 'border-box',padding: padingNumber };
       case 'birdie':
-        return { border: '2px solid black', borderRadius: '50%', width: '20px', height: '20px', boxSizing: 'border-box' as 'border-box', padding: '3px' };
+        return { border: '2px solid black', borderRadius: '50%', width: '20px', height: '20px', boxSizing: 'border-box' as 'border-box', padding: padingNumber };
       case 'birdiePlus':
         return {
           position: 'relative' as 'relative',
           display: 'inline-block',
-          padding: '8px',
+          padding: padingNumber,
           width: '20px',
           height: '20px',
           boxSizing: 'border-box' as 'border-box',
         };
       case 'bogey':
-        return { border: '2px solid black', borderRadius: '5px', width: '20px', height: '20px', boxSizing: 'border-box' as 'border-box', padding: '4px' };
+        return { border: '2px solid black', borderRadius: '5px', width: '20px', height: '20px', boxSizing: 'border-box' as 'border-box', padding: padingNumber };
       case 'bogeyPlus':
         return {
           position: 'relative' as 'relative',
           display: 'inline-block',
-          padding: '8px',
+          padding: padingNumber,
           width: '20px',
           height: '20px',
           boxSizing: 'border-box' as 'border-box',
         };
       default:
-        return {};
+        return { width: '20px', height: '20px', boxSizing: 'border-box' as 'border-box',padding: padingNumber };
     }
   };
 
@@ -85,17 +86,6 @@ const GolfScoreContainer: React.FC<GolfScoreProps> = ({ value, type }) => {
     };
   };
 
-  const getNoBoarderStyle = () => {
-    return {
-      position: 'absolute' as 'absolute',
-      width: '100%',
-      height: '100%',
-      top: '0',
-      left: '0',
-    };
-  };
-
-
   const getNumberStyle = () => {
     return {
       position: 'relative' as 'relative',
@@ -110,18 +100,11 @@ const GolfScoreContainer: React.FC<GolfScoreProps> = ({ value, type }) => {
 
   return (
     <div style={{ ...getBorderStyle(), margin: '5px' }}>
-      {type === 'birdiePlus' || type === 'bogeyPlus' ? (
-        <>
           <div style={getInnerBorderStyle()}>
             {type === 'birdiePlus' ? <div style={getCircleStyle('1px', '0.5px')}></div> : null}
             {type === 'bogeyPlus' ? <div style={getSquareStyle('1px', '0.5px')}></div> : null}
           </div>
-          <div style={getInnerBorderStyle()}>
-            {type === 'birdiePlus' ? <div style={getCircleStyle('1px', '0.5px')}></div> : null}
-            {type === 'bogeyPlus' ? <div style={getSquareStyle('1px', '0.5px')}></div> : null}
-          </div>
-        </>
-      ) :  <div style={getInnerBorderStyle()}><div style={getNoBoarderStyle()}/></div>}
+         
       <div style={getNumberStyle()}>{value}</div>
     </div>
   );
