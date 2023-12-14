@@ -12,3 +12,8 @@ import { worker } from "./mocks/browser";
  ```
  npm start
  ```
+
+ ## Generate dist bundle
+ ```
+ npm run build
+ ```

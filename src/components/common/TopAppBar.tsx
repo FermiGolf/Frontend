@@ -7,7 +7,7 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 
 import { useTranslation } from 'react-i18next';
-import { RefreshTimeContext } from '../../contexts/RefreshTimeContext';
+import { DraftContext } from '../../contexts/DraftContext';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
@@ -16,7 +16,7 @@ import Box from '@mui/material/Box';
 
 export const TopAppBar = ()=>{
   const { t } = useTranslation();
-  const {refreshTime} = useContext(RefreshTimeContext);
+  const {refreshTime} = useContext(DraftContext);
   const minsFromNow = useMemo(()=>Math.round(((new Date().getTime()-refreshTime)/1000)/60),[refreshTime]);
     return (
         <AppBar position="sticky" color={'inherit'}>
@@ -52,23 +52,6 @@ export const TopAppBar = ()=>{
         }}
         >{t('rules-title')}</Button>
          <Box sx={{ flexGrow: 1 }}/>
-
-        {/* <Typography
-          variant="subtitle1"
-          noWrap
-          component="a"
-          href="/rules"
-          sx={{
-            flexGrow: 1,
-            mr: 2,
-            display: { xs: 'none', md: 'flex' },
-            
-            color: 'inherit',
-            textDecoration: 'none',
-          }}
-        >
-          {t('rules-title')}
-        </Typography> */}
         
         {refreshTime !==0 && <Stack direction="row" spacing={1}>
           <AccessTimeIcon color={"inherit"} sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />

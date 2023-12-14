@@ -44,20 +44,35 @@ export const TeamPlayerCards = ({team}:TeamPlayerCardProps)=>{
             <Divider variant="fullWidth"  sx={{ borderBottomWidth: 5 }}>
             <Typography color="text.secondary" variant="h6">{t('team-lineup')} 
             </Typography></Divider>
-    <ScoreMetricUnitRadioButtonGroup unit={scoreUnit} onChange={handleUnitChange}/>
+            <ScoreMetricUnitRadioButtonGroup 
+            unit={scoreUnit} 
+            onChange={handleUnitChange} 
+            hideStroke={true}/>
 
         <Stack direction="row" spacing={2}>
             {team?.players?.map((player,index)=>(
             <PlayerCard 
             key={index}
             name={player.playerName} 
-            round1={{score:player.roundInfo.round1.score[scoreUnit],isComplete:player.roundInfo.round1.isComplete}}
-            round2={{score:player.roundInfo.round2.score[scoreUnit],isComplete:player.roundInfo.round2.isComplete}}
-            round3={{score:player.roundInfo.round3.score[scoreUnit],isComplete:player.roundInfo.round3.isComplete}}
-            round4={{score:player.roundInfo.round4.score[scoreUnit],isComplete:player.roundInfo.round4.isComplete}}
-            totalScore={player.totalScore[scoreUnit]}
-            placement={player.placementInfo.tie?`T${player.placementInfo.placement}`:player.placementInfo.placement.toString()}
-            placementScore={player.placementInfo.placementScore.toString()}
+            round1={
+              {score:player?.roundInfo?.round1?.score && player?.roundInfo?.round1?.score[scoreUnit],
+              isComplete:player?.roundInfo?.round1?.isComplete
+            }}
+            round2={
+              {score:player?.roundInfo?.round2?.score && player?.roundInfo?.round2?.score[scoreUnit],
+                isComplete:player?.roundInfo?.round2?.isComplete
+              }}
+            round3={
+              {score:player?.roundInfo?.round3?.score && player?.roundInfo?.round3?.score[scoreUnit],
+                isComplete:player?.roundInfo?.round3?.isComplete
+              }}
+            round4={
+              {score:player?.roundInfo?.round4?.score && player?.roundInfo?.round4?.score[scoreUnit],
+                isComplete:player?.roundInfo?.round4?.isComplete
+              }}
+            totalScore={player?.totalScore && player?.totalScore[scoreUnit]}
+            placement={player?.placementInfo?.tie?`T${player.placementInfo.placement}`:player.placementInfo.placement.toString()}
+            placementScore={player?.placementInfo?.placementScore?.toString()}
             />
             ))}
             </Stack>

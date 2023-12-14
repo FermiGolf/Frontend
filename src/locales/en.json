@@ -55,7 +55,12 @@
     "scoring-additional-info-wd":"Hole scores only count if a round is completed.",
     "scoring-additional-info-playoff":"Playoff holes will not be counted towards hole scores.",
     "general-error-message":"Something went wrong, we have been notified. Please check back later!",
+    "general-error-title":"Error",
     "hole-breakdown-round":"Round View",
-    "hole-breakdown-player":"Player View"
+    "hole-breakdown-player":"Player View",
+    "home":"Home",
+    "total":"Total",
+    "incorrect-user-input":"Input(s) not found.",
+    "team-not-found":"Could not find provided team name, please select one form the learderboard below."
   }
   

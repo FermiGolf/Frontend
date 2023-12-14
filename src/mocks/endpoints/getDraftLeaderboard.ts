@@ -1,17 +1,17 @@
 
 
 function createData(
-    name:string,
+  teamName:string,
     fermiScore: string,
     draftPlacement:string
    
 
   ) {
-    return { name,fermiScore,draftPlacement};
+    return { teamName,fermiScore,draftPlacement};
   }
   export const mockDraftLeaderboardResponse ={
-    lastRefreshAt:1701813043000,
-    draftName:'Courts Game',
+    tournamentUpdatedDatetime:1701813043000,
+    fermiDraftName:'Courts Game',
     leaderboard:
     [
     createData('Courts', "315","1"),

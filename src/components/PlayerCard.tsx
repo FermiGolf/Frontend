@@ -9,6 +9,7 @@ import CardHeader from "@mui/material/CardHeader";
 import Avatar from "@mui/material/Avatar";
 import Stack from '@mui/material/Stack';
 import Chip from "@mui/material/Chip";
+import Typography from "@mui/material/Typography";
 
 
 type RoundInfo = {score:string,isComplete:boolean};
@@ -48,7 +49,9 @@ export const PlayerCard = (props:PlayerCardProps)=>{
             <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: lightGreen[500] }} aria-label="recipe">
-            {props.totalScore}
+            <Typography  variant="subtitle2">
+                {props.totalScore}
+                </Typography>
           </Avatar>
         }
         title={props.name}

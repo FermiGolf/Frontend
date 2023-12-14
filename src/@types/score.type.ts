@@ -1,3 +1,4 @@
+type ScoreCatergory= 'par' | 'birdie' | 'birdiePlus' | 'bogey' | 'bogeyPlus';
 type ScoreMetrics = {
     stroke:string,
     fermiScore:string,
@@ -16,14 +17,14 @@ type RoundInfo = {
     round2: RoundDetail,
     round3: RoundDetail,
     round4: RoundDetail,
-    playScore: ScoreMetrics,
+
 }
 type HoleDetail = {
     par:number,
-    score:ScoreMetrics
+    scores:ScoreMetrics
 }
 type HoleNumbers = 1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18 ;
-type HoleObj = {holeNumber:HoleNumbers,holeDetail:HoleDetail};
+type HoleObj = {holeNumber:HoleNumbers,holeDetail:HoleDetail,scoreCategory:ScoreCatergory};
 type HoleInfo = Array<HoleObj>
 type PlayerInfo = {
     playerName:string,
@@ -32,8 +33,9 @@ type PlayerInfo = {
     placementInfo:PlacementInfo
 }
 type mockGetTeamInfoResponse ={
+    fermiDraftName:string,
     teamTotalFermiScore:string,
     players:Array<PlayerInfo>
     draftPlacement:string,
 }
-export{ PlayerInfo ,HoleInfo,HoleNumbers,HoleDetail,RoundInfo,RoundDetail,PlacementInfo,ScoreMetrics,mockGetTeamInfoResponse}
+export{ScoreCatergory, PlayerInfo ,HoleInfo,HoleNumbers,HoleDetail,RoundInfo,RoundDetail,PlacementInfo,ScoreMetrics,mockGetTeamInfoResponse}

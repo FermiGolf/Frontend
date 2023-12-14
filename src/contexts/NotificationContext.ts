@@ -4,10 +4,10 @@ import { Dispatch, SetStateAction, createContext } from 'react';
 export type AppNotification = {type:AlertColor,message:string}
 
 interface INotificationContext{
-    notification: AppNotification;
-    setNotification: Dispatch<SetStateAction<AppNotification>>;
+    notification: Array<AppNotification>;
+    setNotification: Dispatch<SetStateAction<Array<AppNotification>>>;
   }
 export const NotificationContext = createContext<INotificationContext>({
-    notification:{type:'info',message:''},
+    notification:[],
     setNotification: () => {}
 });

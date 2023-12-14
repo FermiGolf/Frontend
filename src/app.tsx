@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 
 
 import { FermiRoutes } from './components/common/FermiRoutes';
@@ -10,23 +10,33 @@ import Stack from '@mui/material/Stack';
 import { TopAppBar } from './components/common/TopAppBar';
 import CssBaseline from '@mui/material/CssBaseline';
 
-
-
-import {  RefreshTimeContext } from './contexts/RefreshTimeContext';
+import {  DraftContext } from './contexts/DraftContext';
 import { PageAlerts } from './components/common/PageAlerts';
 import { AppNotification, NotificationContext } from './contexts/NotificationContext';
 
 
+
+
+
 const App = () => {
   const [refreshTime, setRefreshTimestamp] = useState(0);
-  const [notification, setNotification] = useState<AppNotification>({type:'info',message:''});
+  const [draftName, setDraftName] = useState('');
+  const [notification, setNotification] = useState<Array<AppNotification>>([{type:'info',message:''}]);
+  const shouldShowAlert = useMemo(()=>{
+    let placeholder =  false;
+    notification.map((singleNotification)=>{
+        placeholder = placeholder || singleNotification.type === 'error';
+    })
+    
+    return placeholder
+},[notification]);
 
 
   return <React.Fragment>
-     <RefreshTimeContext.Provider value={{refreshTime, setRefreshTimestamp}}>
+     <DraftContext.Provider value={{refreshTime, setRefreshTimestamp, draftName,setDraftName}}>
       <NotificationContext.Provider value={{notification,setNotification}}>
     <Stack direction="column" >
-    {notification.message.length > 0 && <PageAlerts/>}
+    {shouldShowAlert  && <PageAlerts/>}
     <CssBaseline />
       <TopAppBar/>
       <div id="body">
@@ -34,7 +44,7 @@ const App = () => {
     </div>
     </Stack>
     </NotificationContext.Provider>
-    </RefreshTimeContext.Provider>
+    </DraftContext.Provider>
     </React.Fragment>
 
 };

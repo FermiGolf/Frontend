@@ -1,4 +1,4 @@
-export const baseURL = "http://example.com/movies.json"
+export const baseURL = "https://2jv8x4c3kg.execute-api.us-east-1.amazonaws.com/prod"
 
 export enum APIPath {
     DRAFTS = '/drafts',
@@ -13,7 +13,7 @@ type CLIENT = {
 export const getDraftLeaderboardClient = (draftId : string):CLIENT =>{
   return { 
     method: 'GET',
-    url : `${APIPath.DRAFTS}?draftId=${draftId}`
+    url : `${baseURL}${APIPath.DRAFTS}/${draftId}`
    }
 }
 
@@ -21,7 +21,7 @@ export const getDraftLeaderboardClient = (draftId : string):CLIENT =>{
 export const getTeamInfoClient = (draftId : string, teamName:string):CLIENT =>{
     return { 
       method: 'GET',
-      url : `${APIPath.TEAMS}?draftId=${draftId}&&teamname=${teamName}`
+      url : `${baseURL}${APIPath.DRAFTS}/${draftId}${APIPath.TEAMS}/${teamName}`
      }
   }
   

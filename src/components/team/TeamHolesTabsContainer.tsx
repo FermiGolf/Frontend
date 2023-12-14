@@ -13,7 +13,7 @@ import { GroupByCriteria, ScoreMetricUnit } from '../../const/const';
 import Stack from '@mui/material/Stack';
 
 import HoleViewToggle from './HoleViewToggle';
-import { HoleInfo, mockGetTeamInfoResponse } from '../../@types/score.type';
+import { HoleInfo, ScoreCatergory, mockGetTeamInfoResponse } from '../../@types/score.type';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -53,11 +53,7 @@ type TeamHolesTabsContainerProps = {
 
 export function TeamHolesTabsContainer({team}:TeamHolesTabsContainerProps) {
     const { t } = useTranslation();
-  const [value, setValue] = React.useState(0);
 
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
-  };
 
   const [scoreUnit, setScoreUnit] = useState<ScoreMetricUnit>(ScoreMetricUnit.FERMISCORE);
   const [groupByCriteria, setCriteria] = React.useState<GroupByCriteria>(GroupByCriteria.BY_ROUND);
@@ -65,6 +61,7 @@ export function TeamHolesTabsContainer({team}:TeamHolesTabsContainerProps) {
   const handleUnitChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setScoreUnit((event.target as HTMLInputElement).value as ScoreMetricUnit);
   };
+  
 
 
   const tableLabels = useMemo(()=> groupByCriteria === GroupByCriteria.BY_PLAYER ? 
@@ -75,7 +72,7 @@ export function TeamHolesTabsContainer({team}:TeamHolesTabsContainerProps) {
   t("round-fermi-score-header-round",{roundNumber:4})],
   [groupByCriteria,team]);
 
-  type FinalTableDataObj = { label:string,holeInfo:HoleInfo,secondaryLabel:string};
+  type FinalTableDataObj = { label:string,holeInfo:HoleInfo,secondaryLabel:string,};
   type FinalTableData = {
     tab1:Array<FinalTableDataObj>,
     tab2:Array<FinalTableDataObj>,
@@ -86,119 +83,119 @@ type TableDataByCriteria = {[GroupByCriteria.BY_ROUND]:FinalTableData,[GroupByCr
   const tableData:TableDataByCriteria = useMemo(()=> {
     let finalRoundData:FinalTableData = {tab1:[],tab2:[],tab3:[],tab4:[]};
     let finalPlayerData:FinalTableData = {tab1:[],tab2:[],tab3:[],tab4:[]};
-    team.players.map((player,index)=>{
+    team.players?.map((player,index)=>{
 
-      finalRoundData.tab1.push({
+      player?.roundInfo?.round1?.holeInfo && finalRoundData.tab1.push({
         label:player.playerName,
         secondaryLabel: t("round-fermi-score-header-round",{roundNumber:1}),
-        holeInfo:player.roundInfo.round1.holeInfo
+        holeInfo:player?.roundInfo?.round1?.holeInfo,
       });
-      finalRoundData.tab2.push({
+      player?.roundInfo?.round2?.holeInfo && finalRoundData.tab2.push({
         label:player.playerName,
         secondaryLabel: t("round-fermi-score-header-round",{roundNumber:2}),
-        holeInfo:player.roundInfo.round2.holeInfo
+        holeInfo:player?.roundInfo?.round2?.holeInfo
       });
-      finalRoundData.tab3.push({
+      player?.roundInfo?.round3?.holeInfo && finalRoundData.tab3.push({
         label:player.playerName,
         secondaryLabel: t("round-fermi-score-header-round",{roundNumber:3}),
-        holeInfo:player.roundInfo.round3.holeInfo
+        holeInfo:player?.roundInfo?.round3?.holeInfo
       });
-      finalRoundData.tab4.push({
+      player?.roundInfo?.round4?.holeInfo && finalRoundData.tab4.push({
         label:player.playerName,
         secondaryLabel: t("round-fermi-score-header-round",{roundNumber:4}),
-        holeInfo:player.roundInfo.round4.holeInfo
+        holeInfo:player?.roundInfo?.round4?.holeInfo
       });
 
       switch(index) { 
         case 0: { 
-          finalPlayerData.tab1.push({
+          player?.roundInfo?.round1?.holeInfo && finalPlayerData.tab1.push({
             label:t("round-fermi-score-header-round",{roundNumber:1}),
             secondaryLabel: player.playerName,
-            holeInfo:player.roundInfo.round1.holeInfo
+            holeInfo:player?.roundInfo?.round1?.holeInfo
           });
-          finalPlayerData.tab1.push({
+          player?.roundInfo?.round2?.holeInfo &&  finalPlayerData.tab1.push({
             label:t("round-fermi-score-header-round",{roundNumber:2}),
             secondaryLabel: player.playerName,
-            holeInfo:player.roundInfo.round2.holeInfo
+            holeInfo:player?.roundInfo?.round2?.holeInfo
           });
-          finalPlayerData.tab1.push({
+          player?.roundInfo?.round3?.holeInfo && finalPlayerData.tab1.push({
             label:t("round-fermi-score-header-round",{roundNumber:3}),
             secondaryLabel: player.playerName,
-            holeInfo:player.roundInfo.round3.holeInfo
+            holeInfo:player?.roundInfo?.round3?.holeInfo
           });
-          finalPlayerData.tab1.push({
+          player?.roundInfo?.round4?.holeInfo && finalPlayerData.tab1.push({
             label:t("round-fermi-score-header-round",{roundNumber:4}),
             secondaryLabel: player.playerName,
-            holeInfo:player.roundInfo.round4.holeInfo
+            holeInfo:player?.roundInfo?.round4?.holeInfo
           });
            break; 
         } 
         case 1: { 
-          finalPlayerData.tab2.push({
+          player?.roundInfo?.round1?.holeInfo && finalPlayerData.tab2.push({
             label:t("round-fermi-score-header-round",{roundNumber:1}),
             secondaryLabel: player.playerName,
-            holeInfo:player.roundInfo.round1.holeInfo
+            holeInfo:player?.roundInfo?.round1?.holeInfo
           });
-          finalPlayerData.tab2.push({
+          player?.roundInfo?.round2?.holeInfo && finalPlayerData.tab2.push({
             label:t("round-fermi-score-header-round",{roundNumber:2}),
             secondaryLabel: player.playerName,
-            holeInfo:player.roundInfo.round2.holeInfo
+            holeInfo:player?.roundInfo?.round2?.holeInfo
           });
-          finalPlayerData.tab2.push({
+          player?.roundInfo?.round3?.holeInfo && finalPlayerData.tab2.push({
             label:t("round-fermi-score-header-round",{roundNumber:3}),
              secondaryLabel: player.playerName,
-            holeInfo:player.roundInfo.round3.holeInfo
+            holeInfo:player?.roundInfo?.round3?.holeInfo
           });
-          finalPlayerData.tab2.push({
+          player?.roundInfo?.round4?.holeInfo && finalPlayerData.tab2.push({
             label:t("round-fermi-score-header-round",{roundNumber:4}),
             secondaryLabel: player.playerName,
-            holeInfo:player.roundInfo.round4.holeInfo
+            holeInfo:player?.roundInfo?.round4?.holeInfo
           });
            break; 
         } 
         case 2: { 
-          finalPlayerData.tab3.push({
+          player?.roundInfo?.round1?.holeInfo && finalPlayerData.tab3.push({
             label:t("round-fermi-score-header-round",{roundNumber:1}),
             secondaryLabel: player.playerName,
-            holeInfo:player.roundInfo.round1.holeInfo
+            holeInfo:player?.roundInfo?.round1?.holeInfo
           });
-          finalPlayerData.tab3.push({
+          player?.roundInfo?.round2?.holeInfo && finalPlayerData.tab3.push({
             label:t("round-fermi-score-header-round",{roundNumber:2}),
             secondaryLabel: player.playerName,
-            holeInfo:player.roundInfo.round2.holeInfo
+            holeInfo:player?.roundInfo?.round2?.holeInfo
           });
-          finalPlayerData.tab3.push({
+          player?.roundInfo?.round3?.holeInfo && finalPlayerData.tab3.push({
             label:t("round-fermi-score-header-round",{roundNumber:3}),
             secondaryLabel: player.playerName,
-            holeInfo:player.roundInfo.round3.holeInfo
+            holeInfo:player?.roundInfo?.round3?.holeInfo
           });
-          finalPlayerData.tab3.push({
+          player?.roundInfo?.round4?.holeInfo && finalPlayerData.tab3.push({
             label:t("round-fermi-score-header-round",{roundNumber:4}),
             secondaryLabel: player.playerName,
-            holeInfo:player.roundInfo.round4.holeInfo
+            holeInfo:player?.roundInfo?.round4?.holeInfo
           });
            break; 
         } 
         case 3: { 
-          finalPlayerData.tab4.push({
+          player?.roundInfo?.round1?.holeInfo && finalPlayerData.tab4.push({
             label:t("round-fermi-score-header-round",{roundNumber:1}),
             secondaryLabel: player.playerName,
-            holeInfo:player.roundInfo.round1.holeInfo
+            holeInfo:player?.roundInfo?.round1?.holeInfo
           });
-          finalPlayerData.tab4.push({
+          player?.roundInfo?.round2?.holeInfo && finalPlayerData.tab4.push({
             label:t("round-fermi-score-header-round",{roundNumber:2}),
             secondaryLabel: player.playerName,
-            holeInfo:player.roundInfo.round2.holeInfo
+            holeInfo:player?.roundInfo?.round2?.holeInfo
           });
-          finalPlayerData.tab4.push({
+          player?.roundInfo?.round3?.holeInfo &&  finalPlayerData.tab4.push({
             label:t("round-fermi-score-header-round",{roundNumber:3}),
             secondaryLabel: player.playerName,
-            holeInfo:player.roundInfo.round3.holeInfo
+            holeInfo:player?.roundInfo?.round3?.holeInfo
           });
-          finalPlayerData.tab4.push({
+          player?.roundInfo?.round4?.holeInfo && finalPlayerData.tab4.push({
             label:t("round-fermi-score-header-round",{roundNumber:4}),
             secondaryLabel: player.playerName,
-            holeInfo:player.roundInfo.round4.holeInfo
+            holeInfo:player?.roundInfo?.round4?.holeInfo
           });
            break; 
         }
@@ -208,40 +205,64 @@ type TableDataByCriteria = {[GroupByCriteria.BY_ROUND]:FinalTableData,[GroupByCr
 
     return {[GroupByCriteria.BY_ROUND]:finalRoundData,[GroupByCriteria.BY_PLAYER]:finalPlayerData};
   },[team]);
+
+  const tab1Visible = useMemo(()=> tableData && tableData[groupByCriteria]?.tab1?.length>0,[groupByCriteria,tableData]);
+  const tab2Visible = useMemo(()=> tableData && tableData[groupByCriteria]?.tab2?.length>0,[groupByCriteria,tableData]);
+  const tab3Visible = useMemo(()=> tableData && tableData[groupByCriteria]?.tab3?.length>0,[groupByCriteria,tableData]);
+  const tab4Visible = useMemo(()=> tableData && tableData[groupByCriteria]?.tab4?.length>0,[groupByCriteria,tableData]);
+
+const defaultTabValue = useMemo(()=>tab4Visible? 3 : tab3Visible ? 2 : tab2Visible ? 1: 0,[tab2Visible,tab3Visible,tab4Visible])
+const [value, setValue] = React.useState(defaultTabValue);
+
+const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+  setValue(newValue);
+};
+const handleSetCriteria = (event: GroupByCriteria)=>{
+
+  setCriteria(event);
+
+  setValue(0);
+}
   return (
     <Box sx={{ width: '100%'}} >
     
         <Stack spacing={1}>
         <Stack direction="row" alignContent={'bottom'} sx={{justifyContent:'space-between'}}>
     <ScoreMetricUnitRadioButtonGroup unit={scoreUnit} onChange={handleUnitChange} hideOverUnder={true}/>
-    <HoleViewToggle view={groupByCriteria} onChange={setCriteria}/>
+    <HoleViewToggle view={groupByCriteria} onChange={handleSetCriteria}/>
     </Stack>
     </Stack>
 
 
       <Box sx={{ borderBottom: 1, borderColor: 'divider',paddingBottom:'8px' }}>
         <Tabs value={value} onChange={handleChange} aria-label="team-holes-table" variant="fullWidth">
-          <Tab label={tableLabels[0]} {...a11yProps(0)} />
-          <Tab label={tableLabels[1]} {...a11yProps(1)} />
-          <Tab label={tableLabels[2]} {...a11yProps(2)} />
-          <Tab label={tableLabels[3]} {...a11yProps(3)} />
+          {tab1Visible && <Tab label={tableLabels[0]} {...a11yProps(0)} />}
+          {tab2Visible && <Tab label={tableLabels[1]} {...a11yProps(1)} />}
+         {tab3Visible &&  <Tab label={tableLabels[2]} {...a11yProps(2)} />}
+         { tab4Visible &&  <Tab label={tableLabels[3]} {...a11yProps(3)} />}
         </Tabs>
       </Box>
-      <CustomTabPanel value={value} index={0}>
+      {tab1Visible && <CustomTabPanel value={value} index={0}>
         <TeamHolesStrokesTable holeData={tableData[groupByCriteria].tab1} unit={scoreUnit}/>
       </CustomTabPanel>
-      <CustomTabPanel value={value} index={1}>
+      }
+      {tab2Visible && <CustomTabPanel value={value} index={1}>
       <TeamHolesStrokesTable holeData={tableData[groupByCriteria].tab2} unit={scoreUnit}/>
 
       </CustomTabPanel>
+      }
+      {tab3Visible && 
       <CustomTabPanel value={value} index={2}>
       <TeamHolesStrokesTable holeData={tableData[groupByCriteria].tab3} unit={scoreUnit}/>
 
       </CustomTabPanel>
+      }
+      { tab4Visible && 
       <CustomTabPanel value={value} index={3}>
       <TeamHolesStrokesTable holeData={tableData[groupByCriteria].tab4} unit={scoreUnit}/>
 
       </CustomTabPanel>
+}
     </Box>
   );
 }

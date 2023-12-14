@@ -1,6 +1,6 @@
 
 import Paper from '@mui/material/Paper';
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import Link from '@mui/material/Link';
 
 
@@ -13,72 +13,94 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 
 import TableRow from '@mui/material/TableRow';
-import { getGameLeaderboard } from '../api/getDraftLeaderboard';
+import { draftNotFoundErrMsg, getGameLeaderboard } from '../api/getDraftLeaderboard';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
-import { RefreshTimeContext } from '../contexts/RefreshTimeContext';
+import { DraftContext } from '../contexts/DraftContext';
 
 import CircularProgress from '@mui/material/CircularProgress';
 import { NotificationContext } from '../contexts/NotificationContext';
+import { useParams } from 'react-router-dom';
+import { NoDraftFound } from './layouts/NoDraftFound';
+import Stack from '@mui/material/Stack';
 
- type StandingInfo = { name:string,
+
+ type StandingInfo = { teamName:string,
   fermiScore: string,
   draftPlacement:string}
   
 
 type DraftLeaderboard = {
-  draftName:string,
+  tournamentUpdatedDatetime:number,
+  fermiDraftName:string,
   leaderboard:Array<StandingInfo>
 }
 export const DraftFermiLeaderboard = ()=>{
     const { t } = useTranslation();
+    const params= useParams();
+    const draftId = useMemo(()=> params.draftid || 'null',[params.draftid]);
     const [draftLeaderboard,setDraftLeaderboard] = useState<DraftLeaderboard>();
     const [leaderBoardLoading,setLeaderBoardLoading] = useState<boolean>(true);
+    const {draftName,setDraftName} = useContext(DraftContext);
 
-    const {setRefreshTimestamp: setTimestamp} = useContext(RefreshTimeContext);
+    const {setRefreshTimestamp: setTimestamp} = useContext(DraftContext);
     const {setNotification} = useContext(NotificationContext);
+    // const [isDraftNotFound,setIsDraftNotFound] = useState<Boolean>(false);
     useEffect(()=>{
-      getGameLeaderboard('foo').then((draftLeaderboard)=>{
+      getGameLeaderboard(draftId).then((draftLeaderboard)=>{
+
         setDraftLeaderboard(draftLeaderboard);
         setLeaderBoardLoading(false);
-        setTimestamp(draftLeaderboard.lastRefreshAt);
+        setTimestamp(draftLeaderboard.tournamentUpdatedDatetime);
+        draftName ===''&& setDraftName(draftLeaderboard.fermiDraftName);
       }
-      ).catch(()=>{
+      ).catch((error)=>{
+        // setIsDraftNotFound(error.message===draftNotFoundErrMsg);
         setLeaderBoardLoading(false);
-        setNotification({type:"error",message:'getGameLeaderboard error'});
+        setNotification(oldArray => [...oldArray, {type:"error",message:error.message}]);
+
       });
     },[])
 
 return(
   
-    <Grid container >
-      <Grid xs={12} sm={12}>
+
+
+      
+      <Stack direction='column' alignItems={'center'} width={'fill'}>
+        {/* {isDraftNotFound && <NoDraftFound/>} */}
+      
     <div  className='draft-leader-board-header'>
-       {draftLeaderboard && <Typography
+      
+       {draftLeaderboard && 
+
+        <Typography
           sx={{ flex: '1 1 100%' }}
           variant="h6"
           id="tableTitle"
           component="div"
         >
-           {t('leader-board')}
-        </Typography> }
+           {draftLeaderboard.fermiDraftName}
+        </Typography> 
+       
+        }
         </div>
-        </Grid>
+
          { leaderBoardLoading ? <CircularProgress/> : <Grid sm={12} xs={12}>
      <TableContainer component={Paper}>
-      <Table aria-label="simple table">
+      <Table aria-label="leader board table" sx={{minWidth:300}}>
       
         <TableBody>
-          {draftLeaderboard?.leaderboard?.length && draftLeaderboard?.leaderboard?.length >0 && draftLeaderboard?.leaderboard.map((standingInfo) => (
+          {  draftLeaderboard?.leaderboard?.map((standingInfo) => (
             <TableRow
-              key={standingInfo.name}
+              key={standingInfo.teamName}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
               {`${standingInfo.draftPlacement}.`}
               <Link  underline="hover"
                color="inherit" 
-               href={`/drafts/123455/teams/${standingInfo.name}`}>
-                {`${standingInfo.name}`}
+               href={`/drafts/${draftId}/teams/${standingInfo.teamName}`}>
+                {`${standingInfo.teamName}`}
                 </Link>
               </TableCell>
               <TableCell align="right">{standingInfo.fermiScore}</TableCell>
@@ -88,7 +110,8 @@ return(
       </Table>
     </TableContainer>
 </Grid>}
-    </Grid>
+</Stack>
+
 
 )
 }
