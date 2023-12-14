@@ -11,7 +11,7 @@ import Divider from "@mui/material/Divider";
 import { t } from "i18next";
 import { getTeamInfo, teamNotFoundMsg } from "../../api/getTeamInfo";
 import { mockGetTeamInfoResponse } from "../../@types/score.type";
-import CircularProgress from "@mui/material/CircularProgress";
+
 import { NotificationContext } from "../../contexts/NotificationContext";
 import { TeamHolesTabsContainer } from "../team/TeamHolesTabsContainer";
 import { TeamPlayerCards } from "../team/TeamPlayerCardsContainer";
@@ -115,7 +115,7 @@ export const TeamSnapshot = ()=>{
 {teamInfo&&  
   <Grid  xs={12} sm={9} lg={9}  alignItems={'start'}  >
              <Stack direction={'column'} spacing={1} 
-            //  sx={{width:"80%"}}
+
              >
               
               <div className={"team-score-tables-container"}>
