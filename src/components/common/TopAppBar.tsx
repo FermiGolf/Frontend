@@ -11,6 +11,7 @@ import { DraftContext } from '../../contexts/DraftContext';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import MediaQuery from 'react-responsive';
 
 
 
@@ -20,7 +21,12 @@ export const TopAppBar = ()=>{
   const minsFromNow = useMemo(()=>Math.round(((new Date().getTime()-refreshTime)/1000)/60),[refreshTime]);
     return (
         <AppBar position="sticky" color={'inherit'}>
-        <Toolbar>
+        <Toolbar >
+        
+        <Stack direction="row" sx={{justifyContent:'space-between',width:'100%',alignItems:'center'}}>
+        <MediaQuery minWidth={1224}>
+          
+        <Stack direction="row" sx={{alignItems:'center'}}>
         <GolfCourseIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
         <Typography
           variant="h6"
@@ -51,7 +57,32 @@ export const TopAppBar = ()=>{
           display: { xs: 'none', md: 'flex' }
         }}
         >{t('rules-title')}</Button>
-         <Box sx={{ flexGrow: 1 }}/>
+        </Stack>
+
+
+        </MediaQuery>
+        <MediaQuery maxWidth={1224}>
+        <Stack direction="row" sx={{alignItems:'center'}}>
+        <Typography
+          variant="h6"
+          component="a"
+          href="/"
+          sx={{
+            mr: 2,
+            fontFamily: 'monospace',
+            fontWeight: 700,
+            letterSpacing: '.3rem',
+            color: 'inherit',
+            textDecoration: 'none',
+          }}
+        >
+          {t('sm-screen-app-title')}
+        </Typography>
+
+        </Stack>
+        </MediaQuery>
+
+       
         
         {refreshTime !==0 && <Stack direction="row" spacing={1}>
           <AccessTimeIcon color={"inherit"} sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -63,6 +94,7 @@ export const TopAppBar = ()=>{
           {t('data-last-updated-at',{numberOfMin:minsFromNow})}
         </Typography>
         </Stack>}
+        </Stack>
         </Toolbar>
       </AppBar>
     )

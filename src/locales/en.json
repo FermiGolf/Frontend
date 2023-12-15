@@ -50,6 +50,7 @@
     "draft-id":"Draft ID",
     "find-draft":"Find draft",
     "app-title":"GOLF DRAFTS",
+    "sm-screen-app-title":"GOLF",
     "data-last-updated-at": "last freshed {{numberOfMin}} mins ago",
     "rules-title":"Rules",
     "scoring-additional-info-wd":"Hole scores only count if a round is completed.",
