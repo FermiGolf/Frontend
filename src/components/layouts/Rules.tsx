@@ -13,13 +13,12 @@ import Stack from '@mui/material/Stack';
 export const Rules = ()=>{
     const { t } = useTranslation();
     return(
-        <Grid container spacing={2} >
-             <Grid xs={2} sm={3}>
-  </Grid>
-  <Grid xs={12} sm={5} sx={{ paddingTop:"32px"}}>
+
+      
+  <Stack  direction={'column'} alignItems={'center'} sx={{ paddingTop:"32px"}}>
   <ScoringBreakdown/>
-  </Grid>
-        </Grid>
+  </Stack>
+
 
     )
 }

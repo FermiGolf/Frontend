@@ -24,8 +24,8 @@ export const ScoringBreakdown = ()=>{
     return(
         <Stack direction={'column'} spacing={1}>
 
-            <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableContainer component={Paper} sx={{alignContent:"center", width: 'max-content'}}>
+      <Table sx={{ width: 'max-content' }} aria-label={t("rules-title")}>
         <TableHead>
         <TableRow className="highlighted-row">
             <TableCell align="left">{t("scoring-criteria")}</TableCell>

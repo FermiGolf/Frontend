@@ -78,6 +78,16 @@ export const TopAppBar = ()=>{
         >
           {t('sm-screen-app-title')}
         </Typography>
+        <Button 
+         href="/rules"
+        variant="text"
+        size="large"
+        sx={{
+          color: 'inherit',
+
+        }}
+        >{t('rules-title')}
+        </Button>
 
         </Stack>
         </MediaQuery>
