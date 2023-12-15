@@ -47,7 +47,7 @@ export const ScoringBreakdown = ()=>{
                  <TableCell component="th" scope="row"  className='indented-row'>
                  <Stack direction="row" spacing={1}>
                  <Typography color="text.primary">{ t(row.rule)}</Typography>
-                 {row.info && <Tooltip title={t(row.info)}><InfoOutlinedIcon /></Tooltip>}
+                 {row.info && <Tooltip title={t(row.info)} placement={'right'} ><InfoOutlinedIcon /></Tooltip>}
                 </Stack>                
                 </TableCell>
               <TableCell component="th" scope="row">
@@ -61,7 +61,7 @@ export const ScoringBreakdown = ()=>{
             <TableCell align="left">
             <Stack direction="row" spacing={1}>
               <Typography color="text.secondary">{t("placement-score-label")}</Typography>
-            <Tooltip title={t('scoring-notes')}><InfoOutlinedIcon /></Tooltip>
+            <Tooltip title={t('scoring-notes')} placement={'right'}><InfoOutlinedIcon /></Tooltip>
             </Stack>
             </TableCell>
 

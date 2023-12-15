@@ -19,6 +19,7 @@ import { DraftContext } from "../../contexts/DraftContext";
 import { NoDraftFound } from "./NoDraftFound";
 import { draftNotFoundErrMsg } from "../../api/getDraftLeaderboard";
 import Stack from "@mui/material/Stack";
+import CircularProgress from "@mui/material/CircularProgress";
 
 
 export const TeamSnapshot = ()=>{
@@ -109,7 +110,7 @@ export const TeamSnapshot = ()=>{
 
 </Grid>
 }
-
+{teamInfoLoading && <CircularProgress/>}
 
 
 {teamInfo&&  

@@ -67,7 +67,7 @@ return(
 
       
       <Stack direction='column' alignItems={'center'} width={'fill'}>
-        {/* {isDraftNotFound && <NoDraftFound/>} */}
+
       
     <div  className='draft-leader-board-header'>
       

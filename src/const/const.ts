@@ -18,7 +18,7 @@ const playScoringBreakdowns: Array<ScoringRules> = [
     {
         rule:'holeInOne',
         points:10,
-        info:"albatross-info"
+        info:"hole-in-one-info"
     },
     {
         rule:'eagle',

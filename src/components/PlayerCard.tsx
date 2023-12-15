@@ -60,7 +60,7 @@ export const PlayerCard = (props:PlayerCardProps)=>{
                  
               <div className="padded-cell"> 
 
-             {t('position')}{": "}{props.placement} 
+             {t('position')}{": "}{props?.placement?.toUpperCase()} 
 
              </div>
             {props.placementScore && props.placementScore !=="0" 
