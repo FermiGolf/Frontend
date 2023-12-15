@@ -11,9 +11,13 @@ const GolfScoreContainer: React.FC<GolfScoreProps> = ({ value, type }) => {
   const getBorderStyle = () => {
     switch (type) {
       case 'par':
-        return { width: '20px', height: '20px', boxSizing: 'border-box' as 'border-box',padding: padingNumber };
+        return { position: 'relative' as 'relative',
+        display: 'inline-block',
+        width: '20px', height: '20px', boxSizing: 'border-box' as 'border-box',padding: padingNumber };
       case 'birdie':
-        return { border: '2px solid black', borderRadius: '50%', width: '20px', height: '20px', boxSizing: 'border-box' as 'border-box', padding: padingNumber };
+        return { position: 'relative' as 'relative',
+        display: 'inline-block',
+        border: '2px solid black', borderRadius: '50%', width: '20px', height: '20px', boxSizing: 'border-box' as 'border-box', padding: padingNumber };
       case 'birdiePlus':
         return {
           position: 'relative' as 'relative',
@@ -24,7 +28,9 @@ const GolfScoreContainer: React.FC<GolfScoreProps> = ({ value, type }) => {
           boxSizing: 'border-box' as 'border-box',
         };
       case 'bogey':
-        return { border: '2px solid black', borderRadius: '5px', width: '20px', height: '20px', boxSizing: 'border-box' as 'border-box', padding: padingNumber };
+        return { position: 'relative' as 'relative',
+        display: 'inline-block',
+        border: '2px solid black', borderRadius: '5px', width: '20px', height: '20px', boxSizing: 'border-box' as 'border-box', padding: padingNumber };
       case 'bogeyPlus':
         return {
           position: 'relative' as 'relative',
@@ -35,7 +41,9 @@ const GolfScoreContainer: React.FC<GolfScoreProps> = ({ value, type }) => {
           boxSizing: 'border-box' as 'border-box',
         };
       default:
-        return { width: '20px', height: '20px', boxSizing: 'border-box' as 'border-box',padding: padingNumber };
+        return {position: 'relative' as 'relative',
+        display: 'inline-block',
+         width: '20px', height: '20px', boxSizing: 'border-box' as 'border-box',padding: padingNumber };
     }
   };
 
