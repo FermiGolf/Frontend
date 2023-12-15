@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next';
 import { DraftContext } from '../../contexts/DraftContext';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
+
 import MediaQuery from 'react-responsive';
 
 

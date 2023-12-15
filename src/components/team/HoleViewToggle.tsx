@@ -24,10 +24,10 @@ export default function HoleViewToggle(props:HoleViewTogglePropsType) {
       onChange={handleAlignment}
       aria-label="text alignment"
     >
-      <ToggleButton value={GroupByCriteria.BY_ROUND} aria-label="left aligned">
+      <ToggleButton value={GroupByCriteria.BY_ROUND} aria-label={t('hole-breakdown-round')} disabled={props.view === GroupByCriteria.BY_ROUND}>
         {t('hole-breakdown-round')}
       </ToggleButton>
-      <ToggleButton value={GroupByCriteria.BY_PLAYER} aria-label="centered">
+      <ToggleButton value={GroupByCriteria.BY_PLAYER} aria-label={t('hole-breakdown-player')}disabled={props.view === GroupByCriteria.BY_PLAYER}>
       {t('hole-breakdown-player')}
       </ToggleButton>
     </ToggleButtonGroup>
