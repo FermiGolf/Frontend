@@ -45,7 +45,7 @@ export const PlayerCard = (props:PlayerCardProps)=>{
 
     return(
        
-            <Card sx={{minWidth: "24%" }} >
+            <Card sx={{width: "max-content" }} >
             <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: lightGreen[500] }} aria-label="recipe">

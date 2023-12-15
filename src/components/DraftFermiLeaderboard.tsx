@@ -87,7 +87,7 @@ return(
 
          { leaderBoardLoading ? <CircularProgress/> : <Grid sm={12} xs={12}>
      <TableContainer component={Paper}>
-      <Table aria-label="leader board table" sx={{width:300}}>
+      <Table aria-label="leader board table" sx={{width:'fill'}}>
       
         <TableBody>
           {  draftLeaderboard?.leaderboard?.map((standingInfo) => (

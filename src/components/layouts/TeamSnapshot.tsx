@@ -141,7 +141,7 @@ export const TeamSnapshot = ()=>{
 {!isDraftNotFound && isTeamNotFound && <Grid  xs={12} sm={12} lg={12} alignItems={'start'}>
   <Typography color={'text.secondary'} variant="subtitle2"> *{t('team-not-found')}</Typography>
   </Grid>}
-<Grid  xs={5} sm={3} lg={3}  alignItems={'start'}  >
+<Grid  xs={12} sm={3} lg={3}  alignItems={'start'}  >
 
 
     <DraftFermiLeaderboard/>

@@ -15,6 +15,9 @@ import { useParams } from "react-router-dom";
 import { TeamCard } from "./TeamCard";
 
 import Divider from "@mui/material/Divider";
+import MediaQuery from "react-responsive";
+
+const responsesiveViewThreshhold=700;
 
 type TeamPlayerCardProps = {
   team:mockGetTeamInfoResponse
@@ -48,8 +51,73 @@ export const TeamPlayerCards = ({team}:TeamPlayerCardProps)=>{
             unit={scoreUnit} 
             onChange={handleUnitChange} 
             hideStroke={true}/>
+            
+            
+ <MediaQuery maxWidth={responsesiveViewThreshhold}>
+        <Stack direction="column" spacing={2}>
+        <Stack direction="row" spacing={2} sx={{justifyContent:'space-even'}}>
+        {team?.players?.map((player,index)=>{
+            return  (index === 0 || index ===1) && <PlayerCard 
+            key={index}
+            name={player.playerName} 
+            round1={
+              {score:player?.roundInfo?.round1?.score && player?.roundInfo?.round1?.score[scoreUnit],
+              isComplete:player?.roundInfo?.round1?.isComplete
+            }}
+            round2={
+              {score:player?.roundInfo?.round2?.score && player?.roundInfo?.round2?.score[scoreUnit],
+                isComplete:player?.roundInfo?.round2?.isComplete
+              }}
+            round3={
+              {score:player?.roundInfo?.round3?.score && player?.roundInfo?.round3?.score[scoreUnit],
+                isComplete:player?.roundInfo?.round3?.isComplete
+              }}
+            round4={
+              {score:player?.roundInfo?.round4?.score && player?.roundInfo?.round4?.score[scoreUnit],
+                isComplete:player?.roundInfo?.round4?.isComplete
+              }}
+            totalScore={player?.totalScore && player?.totalScore[scoreUnit]}
+            placement={player?.placementInfo?.tie?`T${player.placementInfo.placement}`:player.placementInfo.placement.toString()}
+            placementScore={player?.placementInfo?.placementScore?.toString()}
+            />      
+})}
+</Stack>
+<Stack direction="row" spacing={2}  sx={{justifyContent:'normal'}}>
+{team?.players?.map((player,index)=>{
+            return (index === 2 || index ===3) && <PlayerCard 
+            key={index}
+            name={player.playerName} 
+            round1={
+              {score:player?.roundInfo?.round1?.score && player?.roundInfo?.round1?.score[scoreUnit],
+              isComplete:player?.roundInfo?.round1?.isComplete
+            }}
+            round2={
+              {score:player?.roundInfo?.round2?.score && player?.roundInfo?.round2?.score[scoreUnit],
+                isComplete:player?.roundInfo?.round2?.isComplete
+              }}
+            round3={
+              {score:player?.roundInfo?.round3?.score && player?.roundInfo?.round3?.score[scoreUnit],
+                isComplete:player?.roundInfo?.round3?.isComplete
+              }}
+            round4={
+              {score:player?.roundInfo?.round4?.score && player?.roundInfo?.round4?.score[scoreUnit],
+                isComplete:player?.roundInfo?.round4?.isComplete
+              }}
+            totalScore={player?.totalScore && player?.totalScore[scoreUnit]}
+            placement={player?.placementInfo?.tie?`T${player.placementInfo.placement}`:player.placementInfo.placement.toString()}
+            placementScore={player?.placementInfo?.placementScore?.toString()}
+            />
+           
+})}
+ </Stack>
+          </Stack>
+        </MediaQuery>
 
-        <Stack direction="row" spacing={2}>
+
+            <MediaQuery minWidth={responsesiveViewThreshhold}>
+              <Stack direction="row" spacing={2}>
+       
+       
             {team?.players?.map((player,index)=>(
             <PlayerCard 
             key={index}
@@ -75,7 +143,9 @@ export const TeamPlayerCards = ({team}:TeamPlayerCardProps)=>{
             placementScore={player?.placementInfo?.placementScore?.toString()}
             />
             ))}
+
             </Stack>
+            </MediaQuery>
 
             </Stack>
             </React.Fragment>
