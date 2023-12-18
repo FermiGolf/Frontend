@@ -18,7 +18,9 @@ import MediaQuery from 'react-responsive';
 export const TopAppBar = ()=>{
   const { t } = useTranslation();
   const {refreshTime} = useContext(DraftContext);
-  const minsFromNow = useMemo(()=>Math.round(((new Date().getTime()-refreshTime)/1000)/60),[refreshTime]);
+  const minsFromNow = useMemo(()=>Math.round(((new Date().getTime()-refreshTime*1000)/1000)/60),[refreshTime]);
+  const hoursFromNow = useMemo(()=> Math.round(minsFromNow/60),[minsFromNow]);
+
     return (
         <AppBar position="sticky" color={'inherit'}>
         <Toolbar >
@@ -101,7 +103,7 @@ export const TopAppBar = ()=>{
           noWrap
           color={"text.secondary"}
         >
-          {t('data-last-updated-at',{numberOfMin:minsFromNow})}
+          {hoursFromNow > 120 ? t("data-last-updated-after-done") :  minsFromNow > 120 ? t('data-last-updated-at-hr',{numberOfHr:hoursFromNow}) : t('data-last-updated-at-min',{numberOfMin:minsFromNow})}
         </Typography>
         </Stack>}
         </Stack>
