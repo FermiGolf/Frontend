@@ -13,14 +13,17 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 
 import TableRow from '@mui/material/TableRow';
-import { draftNotFoundErrMsg, getGameLeaderboard } from '../api/getDraftLeaderboard';
+import {  getGameLeaderboard } from '../api/getDraftLeaderboard';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import { DraftContext } from '../contexts/DraftContext';
 
 import CircularProgress from '@mui/material/CircularProgress';
 import { NotificationContext } from '../contexts/NotificationContext';
 import { useParams } from 'react-router-dom';
-import { NoDraftFound } from './layouts/NoDraftFound';
+
+
+import { TornamentStatus } from '../@types/draft.typs';
+import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 
 
@@ -32,7 +35,8 @@ import Stack from '@mui/material/Stack';
 type DraftLeaderboard = {
   tournamentUpdatedDatetime:number,
   fermiDraftName:string,
-  leaderboard:Array<StandingInfo>
+  leaderboard:Array<StandingInfo>,
+  tournamentStatus:TornamentStatus,
 }
 export const DraftFermiLeaderboard = ()=>{
     const { t } = useTranslation();
@@ -44,7 +48,7 @@ export const DraftFermiLeaderboard = ()=>{
 
     const {setRefreshTimestamp: setTimestamp} = useContext(DraftContext);
     const {setNotification} = useContext(NotificationContext);
-    // const [isDraftNotFound,setIsDraftNotFound] = useState<Boolean>(false);
+
     useEffect(()=>{
       getGameLeaderboard(draftId).then((draftLeaderboard)=>{
 
@@ -54,7 +58,7 @@ export const DraftFermiLeaderboard = ()=>{
         draftName ===''&& setDraftName(draftLeaderboard.fermiDraftName);
       }
       ).catch((error)=>{
-        // setIsDraftNotFound(error.message===draftNotFoundErrMsg);
+
         setLeaderBoardLoading(false);
         setNotification(oldArray => [...oldArray, {type:"error",message:error.message}]);
 
@@ -69,7 +73,7 @@ return(
       <Stack direction='column' alignItems={'center'} width={'fill'}>
 
       
-    <div  className='draft-leader-board-header'>
+    <Stack  className='draft-leader-board-header' direction={'row'} spacing={3}>
       
        {draftLeaderboard && 
 
@@ -83,7 +87,8 @@ return(
         </Typography> 
        
         }
-        </div>
+        {draftLeaderboard?.tournamentStatus === TornamentStatus.OFFICIAL && <Chip label={t('data-last-updated-after-done')} />}
+        </Stack>
 
          { leaderBoardLoading ? <CircularProgress/> : <Grid sm={12} xs={12}>
      <TableContainer component={Paper}>

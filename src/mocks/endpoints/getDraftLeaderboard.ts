@@ -1,3 +1,4 @@
+import { TornamentStatus } from "../../@types/draft.typs";
 
 
 function createData(
@@ -10,7 +11,8 @@ function createData(
     return { teamName,fermiScore,draftPlacement};
   }
   export const mockDraftLeaderboardResponse ={
-    tournamentUpdatedDatetime:1701813043000,
+    tournamentUpdatedDatetime:1701813043,
+    tournamentStatus:TornamentStatus.OFFICIAL,
     fermiDraftName:'Courts Game',
     leaderboard:
     [
