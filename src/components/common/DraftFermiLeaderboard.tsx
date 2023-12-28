@@ -4,6 +4,7 @@ import React, { useContext, useEffect, useMemo, useState } from "react";
 import Link from '@mui/material/Link';
 
 
+
 import Typography from '@mui/material/Typography';
 import { useTranslation } from 'react-i18next';
 
@@ -13,16 +14,16 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 
 import TableRow from '@mui/material/TableRow';
-import {  getGameLeaderboard } from '../api/getDraftLeaderboard';
+import {  getGameLeaderboard } from '../../api/getDraftLeaderboard';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
-import { DraftContext } from '../contexts/DraftContext';
+import { DraftContext } from '../../contexts/DraftContext';
 
 import CircularProgress from '@mui/material/CircularProgress';
-import { NotificationContext } from '../contexts/NotificationContext';
+import { NotificationContext } from '../../contexts/NotificationContext';
 import { useParams } from 'react-router-dom';
 
 
-import { TornamentStatus } from '../@types/draft.typs';
+import { TornamentStatus } from '../../@types/draft.typs';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 

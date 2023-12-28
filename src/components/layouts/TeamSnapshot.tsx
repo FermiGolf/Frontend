@@ -1,6 +1,6 @@
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import React, { useContext, useEffect, useState,useMemo } from "react";
-import { DraftFermiLeaderboard } from "../DraftFermiLeaderboard";
+import { DraftFermiLeaderboard } from "../common/DraftFermiLeaderboard";
 
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Link from "@mui/material/Link";

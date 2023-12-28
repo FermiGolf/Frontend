@@ -16,6 +16,12 @@ export const getDraftLeaderboardClient = (draftId : string):CLIENT =>{
     url : `${baseURL}${APIPath.DRAFTS}/${draftId}`
    }
 }
+export const getDraftsByTornamentClient = (tornamentId : string):CLIENT =>{
+  return { 
+    method: 'GET',
+    url : `${baseURL}${APIPath.DRAFTS}/?tornamentId=${tornamentId}`
+   }
+}
 
 
 export const getTeamInfoClient = (draftId : string, teamName:string):CLIENT =>{

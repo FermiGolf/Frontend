@@ -2,7 +2,7 @@
 import Typography from "@mui/material/Typography";
 import React, { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { PlayerCard } from "../PlayerCard";
+import { PlayerCard } from "../common/PlayerCard";
 
 import {  mockGetTeamInfoResponse } from "../../@types/score.type";
 import { ScoreMetricUnit } from "../../const/const";

@@ -2,13 +2,15 @@ import React from 'react';
 
 import { TeamSnapshot } from '../layouts/TeamSnapshot';
 import { DraftSnapshot } from '../layouts/DraftSnapshot';
-import { PathNotFound } from '../layouts/PathNotFound';
+
 import {
   Navigate,
     createBrowserRouter,
   } from "react-router-dom";
-import { NoDraftFound } from '../layouts/NoDraftFound';
+
 import { Rules } from '../layouts/Rules';
+import { FindDraftByTornament } from '../layouts/FindDraftByTornament';
+import { DraftsByTornament } from '../layouts/DraftsByTornament';
   export const FermiRoutes =  createBrowserRouter([
     {
       path: "*",
@@ -17,7 +19,7 @@ import { Rules } from '../layouts/Rules';
     },
     {
       path: "/drafts",
-      element: <NoDraftFound />,
+      element: <FindDraftByTornament />,
 
     },
     {
@@ -30,6 +32,6 @@ import { Rules } from '../layouts/Rules';
       element: <TeamSnapshot />,
 
     },
-    { path: "*", element: <PathNotFound /> },
+    {path:"tornaments/:tornamentId",element:<DraftsByTornament/>},
     {path: "/rules",element:<Rules/>}
   ]);
