@@ -124,7 +124,7 @@ export const TeamSnapshot = ()=>{
 <Link
     underline="hover"
     color="inherit"
-    href={`/tornaments/${teamInfo.tornamentName}`}
+    href={`/tournaments/${teamInfo.tornamentName}`}
   >
 
                <Typography variant="h5" component="div">

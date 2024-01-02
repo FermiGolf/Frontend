@@ -10,7 +10,7 @@ import Typography from "@mui/material/Typography";
 import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
 import { CardActionArea, Collapse, Link, Stack } from '@mui/material';
-import { TornamentStatus } from "../../@types/draft.typs";
+
 import { t } from "i18next";
 
 type TornamentCardProps = {

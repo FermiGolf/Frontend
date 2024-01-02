@@ -1,5 +1,5 @@
 
-import { InputLabel, Select, MenuItem, SelectChangeEvent, FormControl, FormHelperText } from "@mui/material";
+import { InputLabel, Select, MenuItem, SelectChangeEvent, FormControl, FormHelperText, CircularProgress } from "@mui/material";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 
@@ -46,15 +46,17 @@ export const FindDraftByTornament = ()=>{
         setTornamentName(event.target.value);
     };
     const findDraft =useCallback(()=>{
-        window.location.pathname = `/tornaments/${tornamentName}`;
+        window.location.pathname = `/tournaments/${tornamentName}`;
     },[tornamentName]);
 
 
 
     return(
         <React.Fragment>
+           
             <MediaQuery minWidth={1224}>
-
+            { tornamentsLoading  ? <CircularProgress/> 
+            : 
             <Stack direction={"row"} spacing={2} 
             flexWrap="wrap"
             justifyContent="center"
@@ -62,6 +64,7 @@ export const FindDraftByTornament = ()=>{
             sx={{paddingTop:"32px"}}
             
             >
+                
           <FormControl sx={{  minWidth: 200 ,maxWidth:"90%"}} size="medium">
             <InputLabel id="tornament-name-select-label">
                 {t('tornament-name')}
@@ -72,7 +75,7 @@ export const FindDraftByTornament = ()=>{
     value={tornamentName}
     label={t('tornament-name')}
     onChange={setTornament}
-    disabled = {tornamentsLoading || tornaments.length === 0}
+    disabled = {tornaments.length === 0}
   >
     {tornaments.length > 0 && tornaments.map((tornament,index)=>(
          <MenuItem value={tornament.name} key={`tornament-name-${index}`}>{tornament.name}</MenuItem>
@@ -87,12 +90,15 @@ export const FindDraftByTornament = ()=>{
             size="medium"
             sx={{height:'48px'}}
             onClick={findDraft}
-            disabled = {tornamentsLoading || tornaments.length === 0}
+            disabled = { tornaments.length === 0}
             >{t("find-draft")} </Button>
 
 </Stack>
+}
 </MediaQuery>
 <MediaQuery maxWidth={1224}>
+{ tornamentsLoading  ? <CircularProgress/> 
+            : 
 <Stack direction={"column"} spacing={2} 
             flexWrap="wrap"
             justifyContent="center"
@@ -100,6 +106,7 @@ export const FindDraftByTornament = ()=>{
             sx={{paddingTop:"32px"}}
             
             >
+                
           <FormControl sx={{  minWidth: 200 ,maxWidth:"90%"}} size="medium">
             <InputLabel id="tornament-name-select-label">
                 {t('tornament-name')}
@@ -110,7 +117,7 @@ export const FindDraftByTornament = ()=>{
     value={tornamentName}
     label={t('tornament-name')}
     onChange={setTornament}
-    disabled = {tornamentsLoading || tornaments.length === 0}
+    disabled = {tornaments.length === 0}
   >
     {tornaments.length > 0 && tornaments.map((tornament,index)=>(
          <MenuItem value={tornament.name} key={`tornament-name-${index}`}>{tornament.name}</MenuItem>
@@ -125,10 +132,11 @@ export const FindDraftByTornament = ()=>{
             size="medium"
             sx={{height:'48px'}}
             onClick={findDraft}
-            disabled = {tornamentsLoading || tornaments.length === 0}
+            disabled = { tornaments.length === 0}
             >{t("find-draft")} </Button>
 
 </Stack>
+}
     </MediaQuery>
 
             </React.Fragment>

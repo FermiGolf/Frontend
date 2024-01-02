@@ -3,7 +3,7 @@ export const baseURL = "https://2jv8x4c3kg.execute-api.us-east-1.amazonaws.com/p
 export enum APIPath {
     DRAFTS = '/drafts',
     TEAMS = '/teams',
-    TORNAMENTS = '/tornaments'
+    TORNAMENTS = '/tournaments'
 }
 
 type CLIENT = {
