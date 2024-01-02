@@ -34,6 +34,9 @@ type PlayerInfo = {
 }
 type mockGetTeamInfoResponse ={
     fermiDraftName:string,
+    tornamentName:string,
+    tornamentYear:string,
+    tournamentCourse:string,
     teamTotalFermiScore:string,
     players:Array<PlayerInfo>
     draftPlacement:string,

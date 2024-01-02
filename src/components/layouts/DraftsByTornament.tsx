@@ -6,7 +6,7 @@ import { Stack, Breadcrumbs, Typography, Link, CircularProgress } from "@mui/mat
 import { t } from "i18next";
 import { useParams } from "react-router-dom";
 import { NotificationContext } from "../../contexts/NotificationContext";
-import { draftNotFoundByTornamentErrMsg, getDrafts } from "../../api/getDrafts";
+import { tornamentNotFoundByTornamentErrMsg, getTornamentDetail } from "../../api/getTornamentDetail";
 import { TornamentStatus } from "../../@types/draft.typs";
 import { FindDraftByTornament } from "./FindDraftByTornament";
 
@@ -18,6 +18,7 @@ type TornamentDraftList = {
     widthOverride?:boolean,
     fermiDraftId:string,
     tornamentYear:string,
+    tournamentCourse:string,
     tournamentStatus:TornamentStatus,
     teams:Array<string>}>
 }
@@ -32,7 +33,7 @@ export const DraftsByTornament=()=>{
 
     const {setNotification,notification} = useContext(NotificationContext);
     useEffect(()=>{
-        getDrafts(tornamentId).then((drafts)=>{
+        getTornamentDetail(tornamentId).then((drafts)=>{
   
             setDraftList(drafts);
           setDraftsLoading(false);
@@ -51,7 +52,7 @@ export const DraftsByTornament=()=>{
         let placeholder =  false;
         notification.map((singleNotification)=>{
     
-            placeholder = placeholder || singleNotification.message===draftNotFoundByTornamentErrMsg;
+            placeholder = placeholder || singleNotification.message===tornamentNotFoundByTornamentErrMsg;
         })
         
         return placeholder
@@ -79,26 +80,27 @@ spacing={2} sx={{ paddingTop:"16px",paddingLeft:"16px"}}>
                 justifyContent="center"
             alignItems="center"
                 >
-            {draftList?.drafts?.map((draft)=>(
+            {draftList?.drafts?.map((draft,index)=>(
                 <TornamentCard 
+                key={`tornament-card-${index}`}
                 fermiDraftId={draft.fermiDraftId}
                 fermiDraftName={draft.fermiDraftName}
                 tornamentYear={draft.tornamentYear}
+                tournamentCourse={draft.tournamentCourse}
                 widthOverride={true}
-                tournamentStatus={draft.tournamentStatus}
                 teams={draft.teams}/>
             ))}
             </Stack>
 
             </MediaQuery>
             <MediaQuery maxWidth={1224}>
-            {draftList?.drafts?.map((draft)=>(
+            {draftList?.drafts?.map((draft,index)=>(
                 <TornamentCard 
+                key={`tornament-card-${index}`}
                 fermiDraftId={draft.fermiDraftId}
                 fermiDraftName={draft.fermiDraftName}
+                tournamentCourse={draft.tournamentCourse}
                 tornamentYear={draft.tornamentYear}
-
-                tournamentStatus={draft.tournamentStatus}
                 teams={draft.teams}/>
             ))}
 

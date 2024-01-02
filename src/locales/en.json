@@ -66,7 +66,7 @@
     "incorrect-user-input":"Input(s) not found.",
     "team-not-found":"Could not find provided team name, please select one form the learderboard below.",
     "tornament-name": "Tornament",
-    "view-teams": "View Teams",
+    "view-teams": "{{numberOfTeam}} Teams in Pick Order",
     "year":"Year",
     "find-by-tornament-helper":"Select from tornament dropdown",
     "view-draft": "View Draft"

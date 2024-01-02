@@ -4,36 +4,52 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 
 
-import React, {  useCallback, useMemo, useState } from "react";
+import React, {  useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Tornaments } from "../../const/tornaments";
+
 import MediaQuery from "react-responsive";
 
+import { NotificationContext } from "../../contexts/NotificationContext";
+import { getTornamentList } from "../../api/getTornamentList";
 
+type Tornament = {
+    name:string
+}
 
 export const FindDraftByTornament = ()=>{
     const { t } = useTranslation();
-    const [tornamentId,setTornamentID] = useState<string>('');
-    const sortedTornamens = useMemo(()=> Tornaments.sort((a, b) => {
-        const nameA = a?.name?.toUpperCase(); 
-        const nameB = b?.name?.toUpperCase(); 
-        if (nameA && nameB && nameA < nameB) {
-          return -1;
+    const [tornamentName,setTornamentName] = useState<string>('');
+    const [tornamentsLoading,setTornamentsLoading] = useState<boolean>(true);
+    const [tornaments,setTornaments] = useState<Array<Tornament>>([]);
+    const {setNotification} = useContext(NotificationContext);
+
+
+    useEffect(()=>{
+        getTornamentList().then((tornaments)=>{
+  
+            setTornaments(tornaments);
+          setTornamentsLoading(false);
+
+
         }
-        if (nameA && nameB && nameA > nameB) {
-          return 1;
-        }
-        return 0;
-      }),[])
+        ).catch((error)=>{
+  
+          setTornamentsLoading(false);
+          setNotification(oldArray => [...oldArray, {type:"error",message:error.message}]);
+  
+        });
+      },[])
+
+
 
     const setTornament =(event:SelectChangeEvent<string>)=>{
-        setTornamentID(event.target.value);
+        setTornamentName(event.target.value);
     };
     const findDraft =useCallback(()=>{
-        window.location.pathname = `/tornaments/${tornamentId}`;
-    },[tornamentId]);
+        window.location.pathname = `/tornaments/${tornamentName}`;
+    },[tornamentName]);
 
-  
+
 
     return(
         <React.Fragment>
@@ -53,12 +69,13 @@ export const FindDraftByTornament = ()=>{
   <Select
     labelId="tornament-name-select-label"
     id="tornament-name-select"
-    value={tornamentId}
+    value={tornamentName}
     label={t('tornament-name')}
     onChange={setTornament}
+    disabled = {tornamentsLoading || tornaments.length === 0}
   >
-    {sortedTornamens.map((tornament,index)=>(
-         <MenuItem value={tornament.tournId} key={`tornament-name-${index}`}>{tornament.name}</MenuItem>
+    {tornaments.length > 0 && tornaments.map((tornament,index)=>(
+         <MenuItem value={tornament.name} key={`tornament-name-${index}`}>{tornament.name}</MenuItem>
 
     ))}
    
@@ -70,6 +87,7 @@ export const FindDraftByTornament = ()=>{
             size="medium"
             sx={{height:'48px'}}
             onClick={findDraft}
+            disabled = {tornamentsLoading || tornaments.length === 0}
             >{t("find-draft")} </Button>
 
 </Stack>
@@ -78,7 +96,7 @@ export const FindDraftByTornament = ()=>{
 <Stack direction={"column"} spacing={2} 
             flexWrap="wrap"
             justifyContent="center"
-            alignItems="start"
+            alignItems="center"
             sx={{paddingTop:"32px"}}
             
             >
@@ -89,12 +107,13 @@ export const FindDraftByTornament = ()=>{
   <Select
     labelId="tornament-name-select-label"
     id="tornament-name-select"
-    value={tornamentId}
+    value={tornamentName}
     label={t('tornament-name')}
     onChange={setTornament}
+    disabled = {tornamentsLoading || tornaments.length === 0}
   >
-    {sortedTornamens.map((tornament,index)=>(
-         <MenuItem value={tornament.tournId} key={`tornament-name-${index}`}>{tornament.name}</MenuItem>
+    {tornaments.length > 0 && tornaments.map((tornament,index)=>(
+         <MenuItem value={tornament.name} key={`tornament-name-${index}`}>{tornament.name}</MenuItem>
 
     ))}
    
@@ -106,6 +125,7 @@ export const FindDraftByTornament = ()=>{
             size="medium"
             sx={{height:'48px'}}
             onClick={findDraft}
+            disabled = {tornamentsLoading || tornaments.length === 0}
             >{t("find-draft")} </Button>
 
 </Stack>

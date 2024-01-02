@@ -2,7 +2,7 @@ import { APIPath, baseURL } from "../api/const";
 import {  mockDraftLeaderboardResponse } from "./endpoints/getDraftLeaderboard";
 import {http,HttpResponse} from 'msw';
 import { mockTeamInfoResponse } from "./endpoints/getTeamInfo";
-import { mockGetDraftsByLeaderboard } from "./endpoints/getDrafts";
+import { mockGetListOfTornaments, mockGetTornamentDetails } from "./endpoints/getTornaments";
 export const handlers = [
     http.get(`${baseURL}${APIPath.DRAFTS}/any`,
     async ({ params })=>{
@@ -26,13 +26,23 @@ export const handlers = [
     async ({ params })=>{
         return HttpResponse.json(mockDraftLeaderboardResponse, { status: 404 ,statusText:'not found'})
     }),
-    http.get(`${baseURL}${APIPath.DRAFTS}/?tornamentId=005`,
+    http.get(`${baseURL}${APIPath.TORNAMENTS}/World%20Golf%20Championships-Dell%20Technologies%20Match%20Play`,
     async ({ params })=>{
-        return HttpResponse.json(mockGetDraftsByLeaderboard, { status: 200 })
+        return HttpResponse.json(mockGetTornamentDetails, { status: 200 })
+    }),
+    http.get(`${baseURL}${APIPath.TORNAMENTS}`,
+    async ({ params })=>{
+        return HttpResponse.json(mockGetListOfTornaments, { status: 200 })
     }),
 
-    // http.get(`${baseURL}${APIPath.DRAFTS}/?tornamentId=522`,
+    // http.get(`${baseURL}${APIPath.TORNAMENTS}`,
     // async ({ params })=>{
     //     return HttpResponse.json('error', { status: 404 ,statusText:'not found'})
     // }),
+    
+
+    http.get(`${baseURL}${APIPath.TORNAMENTS}/notFound`,
+    async ({ params })=>{
+        return HttpResponse.json('error', { status: 404 ,statusText:'not found'})
+    }),
 ];

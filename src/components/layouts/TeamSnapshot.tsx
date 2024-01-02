@@ -118,7 +118,30 @@ export const TeamSnapshot = ()=>{
              <Stack direction={'column'} spacing={1} 
 
              >
-              
+ <Stack direction={'column'} spacing={1} alignItems={'center'} flexWrap={'wrap'}
+
+>
+<Link
+    underline="hover"
+    color="inherit"
+    href={`/tornaments/${teamInfo.tornamentName}`}
+  >
+
+               <Typography variant="h5" component="div">
+        {teamInfo.tornamentName}
+        </Typography>
+
+</Link>
+        <Typography 
+         variant="subtitle2"
+
+        color="text.secondary"
+        gutterBottom
+        >
+            
+            {teamInfo.tornamentYear} @{teamInfo.tournamentCourse}
+        </Typography> 
+</Stack>
               <div className={"team-score-tables-container"}>
 
              <TeamPlayerCards team={teamInfo}/>

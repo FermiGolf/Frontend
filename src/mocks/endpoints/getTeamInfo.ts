@@ -97,6 +97,9 @@ const  createRoundData = (
   
   
 export const mockTeamInfoResponse : mockGetTeamInfoResponse= {
+    tornamentName:'World Golf Championships-Dell Technologies Match Play',
+    tornamentYear:'2022',
+    tournamentCourse:'TPC Sawgrass (THE PLAYERS Stadium Course)',
     fermiDraftName:'master 2022',
     teamTotalFermiScore:"219",
     draftPlacement:"T3",

@@ -2,7 +2,8 @@ export const baseURL = "https://2jv8x4c3kg.execute-api.us-east-1.amazonaws.com/p
 
 export enum APIPath {
     DRAFTS = '/drafts',
-    TEAMS = '/teams'
+    TEAMS = '/teams',
+    TORNAMENTS = '/tornaments'
 }
 
 type CLIENT = {
@@ -16,10 +17,17 @@ export const getDraftLeaderboardClient = (draftId : string):CLIENT =>{
     url : `${baseURL}${APIPath.DRAFTS}/${draftId}`
    }
 }
-export const getDraftsByTornamentClient = (tornamentId : string):CLIENT =>{
+export const getTornamentClient = (tornamentName : string):CLIENT =>{
   return { 
     method: 'GET',
-    url : `${baseURL}${APIPath.DRAFTS}/?tornamentId=${tornamentId}`
+    url : `${baseURL}${APIPath.TORNAMENTS}/${tornamentName}`
+   }
+}
+
+export const getTornamentsListClient = ():CLIENT =>{
+  return { 
+    method: 'GET',
+    url : `${baseURL}${APIPath.TORNAMENTS}`
    }
 }
 
@@ -30,4 +38,6 @@ export const getTeamInfoClient = (draftId : string, teamName:string):CLIENT =>{
       url : `${baseURL}${APIPath.DRAFTS}/${draftId}${APIPath.TEAMS}/${teamName}`
      }
   }
+  
+
   

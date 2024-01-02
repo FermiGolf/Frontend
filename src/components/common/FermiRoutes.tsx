@@ -14,11 +14,11 @@ import { DraftsByTornament } from '../layouts/DraftsByTornament';
   export const FermiRoutes =  createBrowserRouter([
     {
       path: "*",
-      element: <Navigate to="/drafts" replace />,
+      element: <Navigate to="/tornaments" replace />,
 
     },
     {
-      path: "/drafts",
+      path: "/tornaments",
       element: <FindDraftByTornament />,
 
     },

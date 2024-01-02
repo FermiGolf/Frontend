@@ -5,12 +5,11 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 
 
-import Stack from '@mui/material/Stack';
-import Chip from "@mui/material/Chip";
+
 import Typography from "@mui/material/Typography";
 import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
-import { CardActionArea, Collapse } from '@mui/material';
+import { CardActionArea, Collapse, Link, Stack } from '@mui/material';
 import { TornamentStatus } from "../../@types/draft.typs";
 import { t } from "i18next";
 
@@ -19,13 +18,15 @@ type TornamentCardProps = {
     widthOverride?:boolean,
     fermiDraftId:string,
     tornamentYear:string,
-    tournamentStatus:TornamentStatus,
+    tournamentCourse:string,
+
     teams:Array<string>
 }
-const draft={tournamentStatus:TornamentStatus.OFFICIAL}
+
 export const TornamentCard = (props:TornamentCardProps)=>{
     const findDraft =useCallback(()=>{
-        window.location.pathname = `/drafts/${props.fermiDraftId}`;
+        window.open(`/drafts/${props.fermiDraftId}`, '_blank');
+
     },[]);
     const [expanded, setExpanded] = useState(false);
     const handleClick = useCallback(()=>{
@@ -42,7 +43,7 @@ export const TornamentCard = (props:TornamentCardProps)=>{
         <Typography variant="h5" component="div">
         {props.fermiDraftName}
         </Typography>
-        <Stack direction={"row"} justifyContent={'space-between'}>
+
         <Typography 
          variant="subtitle2"
 
@@ -50,10 +51,10 @@ export const TornamentCard = (props:TornamentCardProps)=>{
         gutterBottom
         >
             
-          {t('year')}: {props.tornamentYear}
+            {props.tornamentYear} @{props.tournamentCourse}
         </Typography> 
-        {props?.tournamentStatus === TornamentStatus.OFFICIAL && <Chip label={t('data-last-updated-after-done')} />}
-        </Stack>
+        
+
        
         
        
@@ -62,14 +63,29 @@ export const TornamentCard = (props:TornamentCardProps)=>{
       
       </CardActionArea>
       <CardActions sx={{justifyContent:"space-between"}}>
-        <Button size="small" onClick={handleClick}>{t('view-teams')}({props.teams.length})</Button>
+        <Button size="small" onClick={handleClick}>{t('view-teams', {numberOfTeam: props.teams.length})}</Button>
         <Button size="small" onClick={findDraft}>{t('view-draft')}</Button>
       </CardActions>
       <Collapse collapsedSize={0} in={expanded} >
         <CardContent>
-        <Typography variant="body1">
-        {props.teams.map((team,index)=>(`${team}${index !==props.teams.length-1 ? ", ":" "}`))}
-        </Typography>
+        <Stack direction={'row'} flexWrap={'wrap'} spacing={0.3}>
+        
+        {props.teams.map((team,index)=>{
+        return <Stack direction={'row'}  spacing={0}>
+         <Link
+        underline="hover"
+        color="inherit"
+        href={`/drafts/${props.fermiDraftId}/teams/${team}`}
+      > {team}
+      </Link>
+      <Typography variant="body1">
+       {`${index !==props.teams.length-1 ? ", ":" "}`}
+       </Typography>
+       </Stack>
+}
+        )}
+
+        </Stack>
         
         </CardContent>
       </Collapse>
