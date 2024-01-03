@@ -17,7 +17,7 @@ import { TeamCard } from "./TeamCard";
 import Divider from "@mui/material/Divider";
 import MediaQuery from "react-responsive";
 
-const responsesiveViewThreshhold=700;
+const responsesiveViewThreshhold=1224;
 
 type TeamPlayerCardProps = {
   team:mockGetTeamInfoResponse
@@ -60,6 +60,7 @@ export const TeamPlayerCards = ({team}:TeamPlayerCardProps)=>{
             return  (index === 0 || index ===1) && <PlayerCard 
             key={index}
             name={player.playerName} 
+            scoreUnit={scoreUnit}
             round1={
               {score:player?.roundInfo?.round1?.score && player?.roundInfo?.round1?.score[scoreUnit],
               isComplete:player?.roundInfo?.round1?.isComplete
@@ -82,9 +83,10 @@ export const TeamPlayerCards = ({team}:TeamPlayerCardProps)=>{
             />      
 })}
 </Stack>
-<Stack direction="row" spacing={2}  sx={{justifyContent:'normal'}}>
+<Stack direction="row" spacing={2}  sx={{justifyContent:'space-even'}}>
 {team?.players?.map((player,index)=>{
             return (index === 2 || index ===3) && <PlayerCard 
+            scoreUnit={scoreUnit}
             key={index}
             name={player.playerName} 
             round1={
@@ -120,6 +122,7 @@ export const TeamPlayerCards = ({team}:TeamPlayerCardProps)=>{
        
             {team?.players?.map((player,index)=>(
             <PlayerCard 
+            scoreUnit={scoreUnit}
             key={index}
             name={player.playerName} 
             round1={

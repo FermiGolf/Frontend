@@ -10,6 +10,7 @@ import Avatar from "@mui/material/Avatar";
 import Stack from '@mui/material/Stack';
 import Chip from "@mui/material/Chip";
 import Typography from "@mui/material/Typography";
+import { ScoreMetricUnit } from "../../const/const";
 
 
 type RoundInfo = {score:string,isComplete:boolean};
@@ -23,6 +24,7 @@ type PlayerCardProps ={
     round2:RoundInfo,
     round3:RoundInfo,
     round4:RoundInfo,
+    scoreUnit:string,
 }
 type RoundInfoProps={
     roundNumber:string,
@@ -56,14 +58,14 @@ export const PlayerCard = (props:PlayerCardProps)=>{
         }
         title={props.name}
         subheader={
-             <Stack direction="row" spacing={1}   alignItems="center">
+             <Stack direction="row" spacing={1}   alignItems="center" flexWrap={'wrap'}>
                  
               <div className="padded-cell"> 
 
              {t('position')}{": "}{props?.placement?.toUpperCase()} 
 
              </div>
-            {props.placementScore && props.placementScore !=="0" 
+            {props.placementScore && props.placementScore !=="0" && props.scoreUnit === ScoreMetricUnit.FERMISCORE
             &&  <Chip label={props.placementScore && `+${props.placementScore}`}
             sx={ {backgroundColor:'#8cc34a',height:'24px'}}/>
         }
