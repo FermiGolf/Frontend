@@ -1,10 +1,11 @@
 {
 
     "round-fermi-score-header-round": "Round {{roundNumber}}",
+    "round-fermi-score-header-r": "R{{roundNumber}}",
     "round-fermi-score-header-player-score": "Total Score",
     "hole-header": "Hole",
     "par-header": "Par",
-    "leader-board": "Leader Board",
+    "leader-board": "Leaderboard",
     "score-unit-label":"Display as",
     "no-draft-msg":"Please provide a valid draft ID in the url path to load the draft.eg: drafts/12344",
     "team-round-label": "Team performance",
@@ -44,6 +45,7 @@
     "placement-label":"Place",
     "rules":"Rules",
     "position":"Position",
+    "position-short":"POS",
     "scoring-notes":"Placement scores will be added after the tournament is complete.",
     "team":"Team",
     "draft":"Draft",
@@ -51,8 +53,8 @@
     "find-draft":"Find drafts",
     "app-title":"GOLF DRAFTS",
     "sm-screen-app-title":"GOLF",
-    "data-last-updated-at-min": "last freshed {{numberOfMin}} mins ago",
-    "data-last-updated-at-hr": "last freshed {{numberOfHr}} hrs ago",
+    "data-last-updated-at-min": "last refreshed {{numberOfMin}} mins ago",
+    "data-last-updated-at-hr": "last refreshed {{numberOfHr}} hrs ago",
     "data-last-updated-after-done": "Official score posted",
     "rules-title":"Rules",
     "scoring-additional-info-wd":"Hole scores only count if a round is completed.",
@@ -63,12 +65,18 @@
     "hole-breakdown-player":"Player View",
     "home":"Home",
     "total":"Total",
+    "total-short":"TOT",
     "incorrect-user-input":"Input(s) not found.",
     "team-not-found":"Could not find provided team name, please select one form the learderboard below.",
     "tornament-name": "Tournament",
     "view-teams": "{{numberOfTeam}} Teams in Pick Order",
     "year":"Year",
     "find-by-tornament-helper":"Select from tournament dropdown",
-    "view-draft": "View Draft"
+    "view-draft": "View Draft",
+    "through":"Through",
+    "through-short":"THRU",
+    "in-progress":"In Progress",
+    "PROJECTED-CUTLINE":"Projected Cutline" ,
+    "CUTLINE": "Cutline"
   }
   

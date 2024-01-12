@@ -1,19 +1,66 @@
 import { TornamentStatus } from "../../@types/draft.typs";
 
-
 function createData(
   teamName:string,
     fermiScore: string,
-    draftPlacement:string
+    draftPlacement:string,
    
 
   ) {
     return { teamName,fermiScore,draftPlacement};
   }
   export const mockDraftLeaderboardResponse ={
+    tornamentName : 'THE PLAYERS Championship',
+    currentRound:"1",
+    tournamentLocation:'HONOLULU, HAWAII • USA',
+    tournamentCourse:'Walalle Country Club',
+    tournamentDuration:'Jan 11 - Jan 16, 2024',
     tournamentUpdatedDatetime:1701813043,
     tournamentStatus:TornamentStatus.OFFICIAL,
     fermiDraftName:'Courts Game',
+    tornamentLeaderboard:[
+      {
+        teamOwner:"Gimbal",
+        playerName:"Victor Hovland",
+
+          placement:'T3',
+          
+
+            totalOverUnder:'-3',
+            playThrough:"F*",
+            R1:'-3',
+            R2:'-',
+            R3:'-',
+            R4:'-',
+          
+     },
+     {
+      teamOwner:"Courts",
+      playerName:"Kimchi",
+
+        placement:'12',
+        totalOverUnder:'-5',
+            playThrough:"F",
+            R1:'-5',
+            R2:'-',
+            R3:'-',
+            R4:'-',
+   },
+   
+   {
+
+    playerName:"Ram",
+
+      placement:'T30',
+      totalOverUnder:'+3',
+            playThrough:"F",
+            R1:'+3',
+            R2:'-',
+            R3:'-',
+            R4:'-',
+      
+ }
+    ],
     leaderboard:
     [
     createData('Courts', "315","1"),

@@ -2,6 +2,7 @@ import React ,{ useMemo, useState } from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
+import SportsGolfIcon from '@mui/icons-material/SportsGolf';
 import { TeamHolesStrokesTable } from './TeamHolesStrokesTable';
 import { useTranslation } from 'react-i18next';
 import { ScoreMetricUnitRadioButtonGroup } from '../ScoreMetricUnitRadioButtonGroup';
@@ -85,22 +86,22 @@ type TableDataByCriteria = {[GroupByCriteria.BY_ROUND]:FinalTableData,[GroupByCr
     let finalPlayerData:FinalTableData = {tab1:[],tab2:[],tab3:[],tab4:[]};
     team.players?.map((player,index)=>{
 
-      player?.roundInfo?.round1?.holeInfo && finalRoundData.tab1.push({
+      player?.roundInfo?.round1?.holeInfo && player?.roundInfo?.round1?.holeInfo.length > 0 && finalRoundData.tab1.push({
         label:player.playerName,
         secondaryLabel: t("round-fermi-score-header-round",{roundNumber:1}),
         holeInfo:player?.roundInfo?.round1?.holeInfo,
       });
-      player?.roundInfo?.round2?.holeInfo && finalRoundData.tab2.push({
+      player?.roundInfo?.round2?.holeInfo && player?.roundInfo?.round2?.holeInfo.length > 0 && finalRoundData.tab2.push({
         label:player.playerName,
         secondaryLabel: t("round-fermi-score-header-round",{roundNumber:2}),
         holeInfo:player?.roundInfo?.round2?.holeInfo
       });
-      player?.roundInfo?.round3?.holeInfo && finalRoundData.tab3.push({
+      player?.roundInfo?.round3?.holeInfo && player?.roundInfo?.round3?.holeInfo.length > 0 && finalRoundData.tab3.push({
         label:player.playerName,
         secondaryLabel: t("round-fermi-score-header-round",{roundNumber:3}),
         holeInfo:player?.roundInfo?.round3?.holeInfo
       });
-      player?.roundInfo?.round4?.holeInfo && finalRoundData.tab4.push({
+      player?.roundInfo?.round4?.holeInfo && player?.roundInfo?.round4?.holeInfo.length > 0 && finalRoundData.tab4.push({
         label:player.playerName,
         secondaryLabel: t("round-fermi-score-header-round",{roundNumber:4}),
         holeInfo:player?.roundInfo?.round4?.holeInfo
@@ -108,22 +109,22 @@ type TableDataByCriteria = {[GroupByCriteria.BY_ROUND]:FinalTableData,[GroupByCr
 
       switch(index) { 
         case 0: { 
-          player?.roundInfo?.round1?.holeInfo && finalPlayerData.tab1.push({
+          player?.roundInfo?.round1?.holeInfo && player?.roundInfo?.round1?.holeInfo.length > 0 && finalPlayerData.tab1.push({
             label:t("round-fermi-score-header-round",{roundNumber:1}),
             secondaryLabel: player.playerName,
             holeInfo:player?.roundInfo?.round1?.holeInfo
           });
-          player?.roundInfo?.round2?.holeInfo &&  finalPlayerData.tab1.push({
+          player?.roundInfo?.round2?.holeInfo && player?.roundInfo?.round2?.holeInfo.length > 0 &&  finalPlayerData.tab1.push({
             label:t("round-fermi-score-header-round",{roundNumber:2}),
             secondaryLabel: player.playerName,
             holeInfo:player?.roundInfo?.round2?.holeInfo
           });
-          player?.roundInfo?.round3?.holeInfo && finalPlayerData.tab1.push({
+          player?.roundInfo?.round3?.holeInfo && player?.roundInfo?.round3?.holeInfo.length > 0 && finalPlayerData.tab1.push({
             label:t("round-fermi-score-header-round",{roundNumber:3}),
             secondaryLabel: player.playerName,
             holeInfo:player?.roundInfo?.round3?.holeInfo
           });
-          player?.roundInfo?.round4?.holeInfo && finalPlayerData.tab1.push({
+          player?.roundInfo?.round4?.holeInfo && player?.roundInfo?.round4?.holeInfo.length > 0 && finalPlayerData.tab1.push({
             label:t("round-fermi-score-header-round",{roundNumber:4}),
             secondaryLabel: player.playerName,
             holeInfo:player?.roundInfo?.round4?.holeInfo
@@ -131,22 +132,22 @@ type TableDataByCriteria = {[GroupByCriteria.BY_ROUND]:FinalTableData,[GroupByCr
            break; 
         } 
         case 1: { 
-          player?.roundInfo?.round1?.holeInfo && finalPlayerData.tab2.push({
+          player?.roundInfo?.round1?.holeInfo && player?.roundInfo?.round1?.holeInfo.length > 0 && finalPlayerData.tab2.push({
             label:t("round-fermi-score-header-round",{roundNumber:1}),
             secondaryLabel: player.playerName,
             holeInfo:player?.roundInfo?.round1?.holeInfo
           });
-          player?.roundInfo?.round2?.holeInfo && finalPlayerData.tab2.push({
+          player?.roundInfo?.round2?.holeInfo && player?.roundInfo?.round2?.holeInfo.length > 0 && finalPlayerData.tab2.push({
             label:t("round-fermi-score-header-round",{roundNumber:2}),
             secondaryLabel: player.playerName,
             holeInfo:player?.roundInfo?.round2?.holeInfo
           });
-          player?.roundInfo?.round3?.holeInfo && finalPlayerData.tab2.push({
+          player?.roundInfo?.round3?.holeInfo && player?.roundInfo?.round3?.holeInfo.length > 0 && finalPlayerData.tab2.push({
             label:t("round-fermi-score-header-round",{roundNumber:3}),
              secondaryLabel: player.playerName,
             holeInfo:player?.roundInfo?.round3?.holeInfo
           });
-          player?.roundInfo?.round4?.holeInfo && finalPlayerData.tab2.push({
+          player?.roundInfo?.round4?.holeInfo && player?.roundInfo?.round4?.holeInfo.length > 0 && finalPlayerData.tab2.push({
             label:t("round-fermi-score-header-round",{roundNumber:4}),
             secondaryLabel: player.playerName,
             holeInfo:player?.roundInfo?.round4?.holeInfo
@@ -154,22 +155,22 @@ type TableDataByCriteria = {[GroupByCriteria.BY_ROUND]:FinalTableData,[GroupByCr
            break; 
         } 
         case 2: { 
-          player?.roundInfo?.round1?.holeInfo && finalPlayerData.tab3.push({
+          player?.roundInfo?.round1?.holeInfo && player?.roundInfo?.round1?.holeInfo.length > 0 && finalPlayerData.tab3.push({
             label:t("round-fermi-score-header-round",{roundNumber:1}),
             secondaryLabel: player.playerName,
             holeInfo:player?.roundInfo?.round1?.holeInfo
           });
-          player?.roundInfo?.round2?.holeInfo && finalPlayerData.tab3.push({
+          player?.roundInfo?.round2?.holeInfo && player?.roundInfo?.round2?.holeInfo.length > 0 && finalPlayerData.tab3.push({
             label:t("round-fermi-score-header-round",{roundNumber:2}),
             secondaryLabel: player.playerName,
             holeInfo:player?.roundInfo?.round2?.holeInfo
           });
-          player?.roundInfo?.round3?.holeInfo && finalPlayerData.tab3.push({
+          player?.roundInfo?.round3?.holeInfo && player?.roundInfo?.round3?.holeInfo.length > 0 && finalPlayerData.tab3.push({
             label:t("round-fermi-score-header-round",{roundNumber:3}),
             secondaryLabel: player.playerName,
             holeInfo:player?.roundInfo?.round3?.holeInfo
           });
-          player?.roundInfo?.round4?.holeInfo && finalPlayerData.tab3.push({
+          player?.roundInfo?.round4?.holeInfo && player?.roundInfo?.round4?.holeInfo.length > 0 && finalPlayerData.tab3.push({
             label:t("round-fermi-score-header-round",{roundNumber:4}),
             secondaryLabel: player.playerName,
             holeInfo:player?.roundInfo?.round4?.holeInfo
@@ -177,22 +178,22 @@ type TableDataByCriteria = {[GroupByCriteria.BY_ROUND]:FinalTableData,[GroupByCr
            break; 
         } 
         case 3: { 
-          player?.roundInfo?.round1?.holeInfo && finalPlayerData.tab4.push({
+          player?.roundInfo?.round1?.holeInfo && player?.roundInfo?.round1?.holeInfo.length > 0 && finalPlayerData.tab4.push({
             label:t("round-fermi-score-header-round",{roundNumber:1}),
             secondaryLabel: player.playerName,
             holeInfo:player?.roundInfo?.round1?.holeInfo
           });
-          player?.roundInfo?.round2?.holeInfo && finalPlayerData.tab4.push({
+          player?.roundInfo?.round2?.holeInfo && player?.roundInfo?.round2?.holeInfo.length > 0 && finalPlayerData.tab4.push({
             label:t("round-fermi-score-header-round",{roundNumber:2}),
             secondaryLabel: player.playerName,
             holeInfo:player?.roundInfo?.round2?.holeInfo
           });
-          player?.roundInfo?.round3?.holeInfo &&  finalPlayerData.tab4.push({
+          player?.roundInfo?.round3?.holeInfo && player?.roundInfo?.round3?.holeInfo.length > 0 &&  finalPlayerData.tab4.push({
             label:t("round-fermi-score-header-round",{roundNumber:3}),
             secondaryLabel: player.playerName,
             holeInfo:player?.roundInfo?.round3?.holeInfo
           });
-          player?.roundInfo?.round4?.holeInfo && finalPlayerData.tab4.push({
+          player?.roundInfo?.round4?.holeInfo && player?.roundInfo?.round4?.holeInfo.length > 0 && finalPlayerData.tab4.push({
             label:t("round-fermi-score-header-round",{roundNumber:4}),
             secondaryLabel: player.playerName,
             holeInfo:player?.roundInfo?.round4?.holeInfo
@@ -236,10 +237,15 @@ const handleSetCriteria = (event: GroupByCriteria)=>{
 
       <Box sx={{ borderBottom: 1, borderColor: 'divider',paddingBottom:'8px' }}>
         <Tabs value={value} onChange={handleChange} aria-label="team-holes-table" variant="fullWidth">
-          {tab1Visible && <Tab label={tableLabels[0]} {...a11yProps(0)} />}
-          {tab2Visible && <Tab label={tableLabels[1]} {...a11yProps(1)} />}
-         {tab3Visible &&  <Tab label={tableLabels[2]} {...a11yProps(2)} />}
-         { tab4Visible &&  <Tab label={tableLabels[3]} {...a11yProps(3)} />}
+          {tab1Visible && <Tab icon={<SportsGolfIcon />} 
+          iconPosition="start" wrapped={true}
+          label={tableLabels[0]} {...a11yProps(0)} />}
+          {tab2Visible && <Tab icon={<SportsGolfIcon />} wrapped={true}
+          iconPosition="start" label={tableLabels[1]} {...a11yProps(1)} />}
+         {tab3Visible &&  <Tab icon={<SportsGolfIcon />} iconPosition="start" 
+         wrapped={true}
+         label={tableLabels[2]} {...a11yProps(2)} />}
+         { tab4Visible &&  <Tab icon={<SportsGolfIcon />} wrapped={true} iconPosition="start" label={tableLabels[3]} {...a11yProps(3)} />}
         </Tabs>
       </Box>
       {tab1Visible && <CustomTabPanel value={value} index={0}>

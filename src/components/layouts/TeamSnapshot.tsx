@@ -2,6 +2,10 @@ import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import React, { useContext, useEffect, useState,useMemo } from "react";
 import { DraftFermiLeaderboard } from "../common/DraftFermiLeaderboard";
 
+import TourIcon from '@mui/icons-material/Tour';
+
+import LinkIcon from '@mui/icons-material/Link';
+
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
@@ -20,6 +24,7 @@ import { NoDraftFound } from "./NoDraftFound";
 import { draftNotFoundErrMsg } from "../../api/getDraftLeaderboard";
 import Stack from "@mui/material/Stack";
 import CircularProgress from "@mui/material/CircularProgress";
+import MediaQuery from "react-responsive";
 
 
 export const TeamSnapshot = ()=>{
@@ -114,24 +119,29 @@ export const TeamSnapshot = ()=>{
 
 
 {teamInfo&&  
-  <Grid  xs={12} sm={9} lg={9}  alignItems={'start'}  >
+  <Grid  xs={12} sm={12} lg={9}  alignItems={'start'}  >
              <Stack direction={'column'} spacing={1} 
 
              >
  <Stack direction={'column'} spacing={1} alignItems={'center'} flexWrap={'wrap'}
 
 >
+
 <Link
     underline="hover"
     color="inherit"
     href={`/tournaments/${teamInfo.tornamentName}`}
   >
+    <Stack direction='row' spacing={1} height={'fit-content'}  alignItems={'center'}>
+  <TourIcon/>
 
                <Typography variant="h5" component="div">
         {teamInfo.tornamentName}
         </Typography>
-
+        <LinkIcon/>
+</Stack>
 </Link>
+
         <Typography 
          variant="subtitle2"
 
@@ -164,7 +174,7 @@ export const TeamSnapshot = ()=>{
 {!isDraftNotFound && isTeamNotFound && <Grid  xs={12} sm={12} lg={12} alignItems={'start'}>
   <Typography color={'text.secondary'} variant="subtitle2"> *{t('team-not-found')}</Typography>
   </Grid>}
-<Grid  xs={12} sm={3} lg={3}  alignItems={'start'}  >
+<Grid  xs={12} sm={12} lg={3}  alignItems={'start'}  >
 
 
     <DraftFermiLeaderboard/>

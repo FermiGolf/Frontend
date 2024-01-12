@@ -110,6 +110,6 @@ const placementScoringBreakdowns: Array<ScoringRules> = [
         points:1
     }
 ]
-
+const CutlineNamePlaceholder = ["PROJECTED-CUTLINE" ,"CUTLINE"];
 enum GroupByCriteria { BY_ROUND='round',BY_PLAYER='player'}
-export {ScoreMetricUnit,playScoringBreakdowns,placementScoringBreakdowns,GroupByCriteria}
+export {ScoreMetricUnit,CutlineNamePlaceholder,playScoringBreakdowns,placementScoringBreakdowns,GroupByCriteria}
