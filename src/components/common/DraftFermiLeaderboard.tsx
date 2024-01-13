@@ -66,6 +66,7 @@ export const DraftFermiLeaderboard = ()=>{
           tournamentLocation:'',
           tournamentCourse:'',
           tournamentDuration:'',
+          tournamentStatus:TornamentStatus.UNKNOWN,
           tornamentLeaderboard:[],
       };
       if (Boolean(draftLeaderboard.tornamentName)) {tourInfo.tornamentName = draftLeaderboard.tornamentName;}
@@ -73,6 +74,7 @@ export const DraftFermiLeaderboard = ()=>{
       if (Boolean(draftLeaderboard.tournamentLocation)) {tourInfo.tournamentLocation = draftLeaderboard.tournamentLocation;}
       if (Boolean(draftLeaderboard.tournamentCourse)) {tourInfo.tournamentCourse = draftLeaderboard.tournamentCourse;}
       if (Boolean(draftLeaderboard.tournamentDuration)) {tourInfo.tournamentDuration = draftLeaderboard.tournamentDuration;}
+      if (Boolean(draftLeaderboard.tournamentStatus)) {tourInfo.tournamentStatus = draftLeaderboard.tournamentStatus;}
       if (Boolean(draftLeaderboard.tornamentLeaderboard)) {tourInfo.tornamentLeaderboard = draftLeaderboard.tornamentLeaderboard;}
 
         setTournamentInfo(tourInfo)

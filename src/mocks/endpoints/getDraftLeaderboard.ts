@@ -16,7 +16,7 @@ function createData(
     tournamentCourse:'Walalle Country Club',
     tournamentDuration:'Jan 11 - Jan 16, 2024',
     tournamentUpdatedDatetime:1701813043,
-    tournamentStatus:TornamentStatus.OFFICIAL,
+    tournamentStatus:TornamentStatus.ONGOING,
     fermiDraftName:'Courts Game',
     tornamentLeaderboard:[
       {
@@ -46,7 +46,10 @@ function createData(
             R3:'-',
             R4:'-',
    },
-   
+   {
+    playerName:"PROJECTED-CUTLINE",
+    totalOverUnder:'-5',
+ },
    {
 
     playerName:"Ram",

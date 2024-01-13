@@ -65,15 +65,26 @@ const currentRoundKey:RoundKey = useMemo(()=> {
           
           <Stack direction='column' alignItems={'start'} spacing={1}>
             
-          { props.tournamentInfo?.currentRound &&  props.tournamentInfo?.currentRound.length > 0 && props.tournamentInfo?.currentRound !=='0' &&
+          
+          { props.tournamentInfo?.tournamentStatus 
+          &&  props.tournamentInfo?.tournamentStatus?.length > 0 
+          && props.tournamentInfo?.tournamentStatus === TornamentStatus.OFFICIAL 
+          ? 
+        <Stack direction='row' spacing={1} height={'fit-content'}>
+         
+         <Chip label={t('data-last-updated-after-done')} />
+        </Stack>
+        :
+        props.tournamentInfo?.currentRound 
+        &&  props.tournamentInfo?.currentRound.length > 0 
+        && props.tournamentInfo?.currentRound !=='0' 
+        &&
         <Stack direction='row' spacing={1} height={'fit-content'}>
          <div style={{backgroundColor:lightGreen[500], textAlign: 'center', borderRadius: '3px',}}  > 
          <Typography  variant="subtitle2" width={'20px'}> {t('round-fermi-score-header-r',{roundNumber: props.tournamentInfo?.currentRound})}</Typography>
           </div>
           <Typography  variant="subtitle2" width={'85px'} color={lightGreen[500]}> {t('in-progress')}</Typography>
         </Stack>
-        
-
         }
         <Link
     underline="hover"

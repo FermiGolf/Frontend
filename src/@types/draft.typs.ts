@@ -1,4 +1,4 @@
-export enum TornamentStatus {OFFICIAL='official', ONGOING='ongoing'};
+export enum TornamentStatus {OFFICIAL='official', ONGOING='ongoing', UNKNOWN = 'unknow'};
     
 export type ITournamentInfo = {
     tornamentName : string,
@@ -6,6 +6,7 @@ export type ITournamentInfo = {
     tournamentLocation?:string,
     tournamentCourse?:string,
     tournamentDuration?:string,
+    tournamentStatus:TornamentStatus,
     tornamentLeaderboard:Array<TornamentLeaderboard>
 }
 

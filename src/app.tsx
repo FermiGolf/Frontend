@@ -13,7 +13,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import {  DraftContext } from './contexts/DraftContext';
 import { PageAlerts } from './components/common/PageAlerts';
 import { AppNotification, NotificationContext } from './contexts/NotificationContext';
-import { ITournamentInfo } from './@types/draft.typs';
+import { ITournamentInfo, TornamentStatus } from './@types/draft.typs';
 
 
 
@@ -28,6 +28,7 @@ const App = () => {
     tournamentLocation:'',
     tournamentCourse:'',
     tournamentDuration:'',
+    tournamentStatus:TornamentStatus.UNKNOWN,
     tornamentLeaderboard:[],
 });
   const [notification, setNotification] = useState<Array<AppNotification>>([{type:'info',message:''}]);
