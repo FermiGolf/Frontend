@@ -2,9 +2,14 @@ import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import React, { useContext, useEffect, useState,useMemo } from "react";
 import { DraftFermiLeaderboard } from "../common/DraftFermiLeaderboard";
 
+import RequestQuoteIcon from '@mui/icons-material/RequestQuote';
+
+import HomeIcon from '@mui/icons-material/Home';
+import GroupsIcon from '@mui/icons-material/Groups';
+
 import TourIcon from '@mui/icons-material/Tour';
 
-import LinkIcon from '@mui/icons-material/Link';
+
 
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Link from "@mui/material/Link";
@@ -88,6 +93,8 @@ export const TeamSnapshot = ()=>{
         
 
           <Breadcrumbs aria-label="breadcrumb">
+          <Stack direction={'row'} alignItems={'center'} spacing = {0.3}>
+            <HomeIcon/>
   <Link
     underline="hover"
     color="inherit"
@@ -95,14 +102,21 @@ export const TeamSnapshot = ()=>{
   >
     {t("home")}
   </Link>
+  </Stack>
+  <Stack direction={'row'} alignItems={'center'} spacing = {0.3}>
+  <RequestQuoteIcon/>
   <Link
     underline="hover"
     color="inherit"
     href={`/drafts/${params.draftid}`}
   >
-    <Typography color="text.primary">{t("draft")} - {displayDraftIdentifier}</Typography>
+    <Typography color="text.primary">{displayDraftIdentifier}</Typography>
   </Link>
-  <Typography color="text.primary">{t("team")} - {teamName}</Typography>
+  </Stack>
+  <Stack direction={'row'} alignItems={'center'} spacing = {0.3}>
+  <GroupsIcon/>
+  <Typography color="text.primary">{teamName}</Typography>
+  </Stack>
 </Breadcrumbs>
 </Grid>
 
@@ -138,7 +152,7 @@ export const TeamSnapshot = ()=>{
                <Typography variant="h5" component="div">
         {teamInfo.tornamentName}
         </Typography>
-        <LinkIcon/>
+
 </Stack>
 </Link>
 

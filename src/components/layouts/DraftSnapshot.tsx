@@ -5,7 +5,11 @@ import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import { useParams } from "react-router-dom";
-import LeaderboardIcon from '@mui/icons-material/Leaderboard';
+
+
+import RequestQuoteIcon from '@mui/icons-material/RequestQuote';
+
+import HomeIcon from '@mui/icons-material/Home';
 
 import { t } from "i18next";
 import { DraftContext } from "../../contexts/DraftContext";
@@ -39,6 +43,8 @@ export const DraftSnapshot = ()=>{
 spacing={2} 
 sx={{ paddingTop:"16px",paddingLeft:"16px"}}>
   <Breadcrumbs aria-label="breadcrumb">
+    <Stack direction={'row'} alignItems={'c'} spacing = {0.3}>
+      <HomeIcon/>
   <Link
     underline="hover"
     color="inherit"
@@ -46,7 +52,11 @@ sx={{ paddingTop:"16px",paddingLeft:"16px"}}>
   >
     {t("home")}
   </Link>
-  <Typography color="text.primary">{t("draft")}  - {displayDraftIdentifier}</Typography>
+  </Stack>
+  <Stack direction={'row'} alignItems={'center'} spacing = {0.3}>
+  <RequestQuoteIcon/>
+  <Typography color="text.primary"> {displayDraftIdentifier}</Typography>
+  </Stack>
 </Breadcrumbs>
 <Stack direction={'row'} alignItems={'center'} justifyContent={'center'}>
 {isDraftNotFound && <NoDraftFound/>}

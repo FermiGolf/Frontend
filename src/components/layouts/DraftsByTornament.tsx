@@ -9,6 +9,9 @@ import { NotificationContext } from "../../contexts/NotificationContext";
 import { tornamentNotFoundByTornamentErrMsg, getTornamentDetail } from "../../api/getTornamentDetail";
 import { TornamentStatus } from "../../@types/draft.typs";
 import { FindDraftByTornament } from "./FindDraftByTornament";
+import HomeIcon from '@mui/icons-material/Home';
+
+import TourIcon from '@mui/icons-material/Tour';
 
 
 type TornamentDraftList = {
@@ -62,6 +65,8 @@ export const DraftsByTornament=()=>{
             <Stack direction={'column'} 
 spacing={2} sx={{ paddingTop:"16px",paddingLeft:"16px"}}>
           <Breadcrumbs aria-label="breadcrumb">
+          <Stack direction={'row'} spacing={0.3} alignItems={'center'}>
+            <HomeIcon/>
   <Link
     underline="hover"
     color="inherit"
@@ -69,7 +74,11 @@ spacing={2} sx={{ paddingTop:"16px",paddingLeft:"16px"}}>
   >
     {t("home")}
   </Link>
-  <Typography color="text.primary">{t("tornament-name")}  - {displayTornamentIdentifier}</Typography>
+  </Stack>
+  <Stack direction={'row'} spacing={0.3} alignItems={'center'}>
+  <TourIcon/>
+  <Typography color="text.primary">{displayTornamentIdentifier}</Typography>
+  </Stack>
 </Breadcrumbs>
 {draftsLoading && <CircularProgress/>}
 {isDraftNotFound && <FindDraftByTornament/>}

@@ -4,7 +4,7 @@ import Link from '@mui/material/Link';
 import InfoIcon from '@mui/icons-material/Info';
 import { grey, lightGreen } from '@mui/material/colors';
 import TourIcon from '@mui/icons-material/Tour';
-import LinkIcon from '@mui/icons-material/Link';
+
 
 import GroupsIcon from '@mui/icons-material/Groups';
 
@@ -103,7 +103,7 @@ const currentRoundKey:RoundKey = useMemo(()=> {
           
            { props.tournamentInfo?.tornamentName}
         </Typography> 
-        <LinkIcon/>
+
         </Stack>
         </Link>
         <Stack direction='row' spacing={1} height={'fit-content'}  alignItems={'center'}>

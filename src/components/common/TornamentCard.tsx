@@ -4,8 +4,10 @@ import Card from '@mui/material/Card';
 
 import CardContent from '@mui/material/CardContent';
 
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import RequestQuoteIcon from '@mui/icons-material/RequestQuote';
 
-
+import LinkIcon from '@mui/icons-material/Link';
 import Typography from "@mui/material/Typography";
 import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
@@ -25,7 +27,7 @@ type TornamentCardProps = {
 
 export const TornamentCard = (props:TornamentCardProps)=>{
     const findDraft =useCallback(()=>{
-        window.open(`/drafts/${props.fermiDraftId}`, '_blank');
+        window.open(`/drafts/${props.fermiDraftId}`, '_self');
 
     },[]);
     const [expanded, setExpanded] = useState(false);
@@ -39,10 +41,13 @@ export const TornamentCard = (props:TornamentCardProps)=>{
         <Card sx={{ margin: '16px',width:cardWidth}}>
             <CardActionArea onClick={findDraft}>
       <CardContent>
-    
+        <Stack direction={'row'} alignItems={'center'} spacing={1}>
+        <RequestQuoteIcon/>
         <Typography variant="h5" component="div">
         {props.fermiDraftName}
         </Typography>
+
+        </Stack>
 
         <Typography 
          variant="subtitle2"
@@ -63,7 +68,8 @@ export const TornamentCard = (props:TornamentCardProps)=>{
       
       </CardActionArea>
       <CardActions sx={{justifyContent:"space-between"}}>
-        <Button size="small" onClick={handleClick}>{t('view-teams', {numberOfTeam: props.teams.length})}</Button>
+        <Button size="small" onClick={handleClick} startIcon={<ExpandMoreIcon/>}>
+          {t('view-teams', {numberOfTeam: props.teams.length})}</Button>
         <Button size="small" onClick={findDraft}>{t('view-draft')}</Button>
       </CardActions>
       <Collapse collapsedSize={0} in={expanded} >
@@ -72,12 +78,15 @@ export const TornamentCard = (props:TornamentCardProps)=>{
         
         {props.teams.map((team,index)=>{
         return <Stack direction={'row'}  spacing={0}>
+          <Stack direction={'row'} alignItems={'center'} spacing={0.2}>
          <Link
         underline="hover"
         color="inherit"
         href={`/drafts/${props.fermiDraftId}/teams/${team}`}
       > {team}
       </Link>
+      <LinkIcon fontSize="small"/>
+      </Stack>
       <Typography variant="body1">
        {`${index !==props.teams.length-1 ? ", ":" "}`}
        </Typography>

@@ -2,8 +2,10 @@
 import Paper from '@mui/material/Paper';
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import Link from '@mui/material/Link';
-import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 
+import RequestQuoteIcon from '@mui/icons-material/RequestQuote';
+
+import GroupsIcon from '@mui/icons-material/Groups';
 
 import Typography from '@mui/material/Typography';
 import { useTranslation } from 'react-i18next';
@@ -98,8 +100,13 @@ return(
     <Stack  className='draft-leader-board-header' direction={'row'} spacing={3}>
       
        {draftLeaderboard && 
+       <Link
+       underline="hover"
+    color="inherit"
+    href={`/drafts/${draftId}`}
+       >
        <Stack direction={'row'} spacing={1} height={'fit-content'}  alignItems={'center'}>
-       <InsertDriveFileIcon/>
+       <RequestQuoteIcon/>
 
         <Typography
           sx={{ flex: '1 1 100%' }}
@@ -109,7 +116,9 @@ return(
         >
            {draftLeaderboard.fermiDraftName}
         </Typography> 
+
         </Stack>
+        </Link>
        
         }
         {draftLeaderboard?.tournamentStatus === TornamentStatus.OFFICIAL && <Chip label={t('data-last-updated-after-done')} />}
@@ -123,7 +132,7 @@ return(
       <TableHead>
           <TableRow>
             <TableCell  component="th" align="left" width={'fit-content'}>{t('position')}</TableCell>
-            <TableCell component="th" align="left" width={'auto'}>{t('team')}</TableCell>
+            <TableCell component="th" align="center" width={'auto'}>{t('team')}</TableCell>
             <TableCell  component="th" align="center" width={'auto'}>{t('round-fermi-score-header-player-score')}</TableCell>
           </TableRow>
         </TableHead>
@@ -137,7 +146,7 @@ return(
               <TableCell component="th" align="left" >
               {`${standingInfo.draftPlacement}.`}
               </TableCell>
-              <TableCell component="th" width={'auto'}>
+              <TableCell component="th" width={'auto'} align="center" >
               <Link  underline="hover"
                color="inherit" 
                href={`/drafts/${draftId}/teams/${standingInfo.teamName}`}>
@@ -147,10 +156,11 @@ return(
                  alignItems={'center'} 
                
                 >
-                  <Typography variant='body2'  width={'auto'} color={'text.primary'} >
+                  <GroupsIcon style={{ fontSize: 'medium' }}/>
+                  <Typography variant='body2'  width={'auto'} color={'text.primary'} align="left" >
                 {`${standingInfo.teamName}`}
                 </Typography>
-                <LinkIcon style={{ fontSize: 'medium' }}/>
+
                 </Stack>
                 </Link>
               </TableCell>
