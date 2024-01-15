@@ -7,7 +7,7 @@ import { PlayerCard } from "../common/PlayerCard";
 import {  mockGetTeamInfoResponse } from "../../@types/score.type";
 import { ScoreMetricUnit } from "../../const/const";
 
-import { ScoreMetricUnitRadioButtonGroup } from "../ScoreMetricUnitRadioButtonGroup";
+import { ScoreMetricUnitRadioButtonGroup } from "../common/ScoreMetricUnitRadioButtonGroup";
 import Stack from "@mui/material/Stack";
 
 import { useParams } from "react-router-dom";

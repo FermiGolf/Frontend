@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import SportsGolfIcon from '@mui/icons-material/SportsGolf';
 import { TeamHolesStrokesTable } from './TeamHolesStrokesTable';
 import { useTranslation } from 'react-i18next';
-import { ScoreMetricUnitRadioButtonGroup } from '../ScoreMetricUnitRadioButtonGroup';
+import { ScoreMetricUnitRadioButtonGroup } from '../common/ScoreMetricUnitRadioButtonGroup';
 import { GroupByCriteria, ScoreMetricUnit } from '../../const/const';
 
 

@@ -94,10 +94,10 @@ return(
 
 
       
-      <Stack direction='column' alignItems={'center'} width={'fit-content'}>
+      <Stack direction='column' alignItems={'start'} width={'fit-content'} spacing={1}>
 
       
-    <Stack  className='draft-leader-board-header' direction={'row'} spacing={3}>
+<Stack  className='draft-leader-board-header' direction={'column'} spacing={1} alignItems={'start'}>
       
        {draftLeaderboard && 
        <Link
@@ -144,7 +144,7 @@ return(
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" align="left" >
-              {`${standingInfo.draftPlacement}.`}
+              {`${standingInfo.draftPlacement}`}
               </TableCell>
               <TableCell component="th" width={'auto'} align="center" >
               <Link  underline="hover"

@@ -29,7 +29,10 @@ import { NoDraftFound } from "./NoDraftFound";
 import { draftNotFoundErrMsg } from "../../api/getDraftLeaderboard";
 import Stack from "@mui/material/Stack";
 import CircularProgress from "@mui/material/CircularProgress";
-import MediaQuery from "react-responsive";
+
+import { DraftTournamentInfoRadioButtonGroup, LeaderBoardViewType } from "../common/DraftTournamentInfoRadioButtonGroup";
+
+import { TournamentLeaderboardLite } from "../common/TournamentLeaderboardLite";
 
 
 export const TeamSnapshot = ()=>{
@@ -41,10 +44,14 @@ export const TeamSnapshot = ()=>{
   const teamName = useMemo(()=> params.teamname || 'null',[params.teamname]);
   
 
-  const {draftName,setDraftName} = useContext(DraftContext);
+  const {draftName,setDraftName,tournamentInfo} = useContext(DraftContext);
 
   const displayDraftIdentifier = useMemo(()=> draftName==='' ? params.draftid: draftName,[params.draftid,draftName]);
   const {notification}=useContext(NotificationContext);
+  const [leaderboardViewType, setLeaderboardViewType] = useState<LeaderBoardViewType>(LeaderBoardViewType.DRAFT_INFO);
+  const handleViewChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setLeaderboardViewType((event.target as HTMLInputElement).value as LeaderBoardViewType);
+  };
 
 
 
@@ -133,7 +140,7 @@ export const TeamSnapshot = ()=>{
 
 
 {teamInfo&&  
-  <Grid  xs={12} sm={12} lg={9}  alignItems={'start'}  >
+  <Grid  xs={12} sm={12} md={12} lg={9}  alignItems={'start'}  >
              <Stack direction={'column'} spacing={1} 
 
              >
@@ -188,10 +195,26 @@ export const TeamSnapshot = ()=>{
 {!isDraftNotFound && isTeamNotFound && <Grid  xs={12} sm={12} lg={12} alignItems={'start'}>
   <Typography color={'text.secondary'} variant="subtitle2"> *{t('team-not-found')}</Typography>
   </Grid>}
-<Grid  xs={12} sm={12} lg={3}  alignItems={'start'}  >
+<Grid  xs={12} sm={12} md={6}  lg={3}  alignItems={'start'}  >
+<Stack direction={'column'} alignItems={'start'} spacing={1}>
+{!isDraftNotFound && !isTeamNotFound && tournamentInfo?.tornamentName && 
+<Typography color={'text.secondary'} variant="subtitle2" alignContent={'center'}> {t('leader-board')}</Typography>}
+{!isDraftNotFound && !isTeamNotFound && tournamentInfo?.tornamentName && 
+ < DraftTournamentInfoRadioButtonGroup onChange={handleViewChange} viewType={leaderboardViewType}/>}
+ {tournamentInfo?.tornamentName &&
+ leaderboardViewType === LeaderBoardViewType.TOURNAMENT_INFO 
+ && <Stack direction={'column'} alignItems={'center'} spacing={1}>
 
+  <TournamentLeaderboardLite draftId={draftId} tournamentInfo={tournamentInfo}/>
+  </Stack>
+}
+ {leaderboardViewType === LeaderBoardViewType.DRAFT_INFO 
+ &&
+ <DraftFermiLeaderboard/>
+}
+</Stack>
 
-    <DraftFermiLeaderboard/>
+    
 
   </Grid>
 

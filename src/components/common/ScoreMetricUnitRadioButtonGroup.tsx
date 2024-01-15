@@ -5,7 +5,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 
 import { useTranslation } from 'react-i18next';
-import { ScoreMetricUnit } from '../const/const';
+import { ScoreMetricUnit } from '../../const/const';
 
 type PropsType = { 
   unit:string,

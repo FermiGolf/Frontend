@@ -77,6 +77,8 @@
     "through-short":"THRU",
     "in-progress":"In Progress",
     "PROJECTED-CUTLINE":"Projected Cutline" ,
-    "CUTLINE": "The following players failded to make the cut"
+    "CUTLINE": "The following players failded to make the cut",
+    "tournament-info": "Tournament",
+    "draft-info":"Draft"
   }
   

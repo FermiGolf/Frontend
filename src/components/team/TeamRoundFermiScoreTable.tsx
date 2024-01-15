@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next';
 import Badge from '@mui/material/Badge';
 
 import { getTeamInfo } from "../../api/getTeamInfo";
-import { ScoreMetricUnitRadioButtonGroup } from "../ScoreMetricUnitRadioButtonGroup";
+import { ScoreMetricUnitRadioButtonGroup } from "../common/ScoreMetricUnitRadioButtonGroup";
 import { ScoreMetricUnit } from "../../const/const";
 import { Box, Grid, Typography } from "@mui/material";
 
